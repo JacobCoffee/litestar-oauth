@@ -50,34 +50,58 @@ After creating the app:
    or a secrets manager.
 
 
-Configuration
+Usage Example
 -------------
 
-Standalone Usage
-~~~~~~~~~~~~~~~~
+.. tabs::
 
-.. code-block:: python
+   .. group-tab:: Litestar Plugin
 
-   from litestar_oauth.providers import GitHubOAuthProvider
+      .. code-block:: python
 
-   github = GitHubOAuthProvider(
-       client_id="Iv1.abc123456789",
-       client_secret="your-client-secret",
-   )
+         from litestar import Litestar
+         from litestar_oauth.contrib.litestar import OAuthPlugin, OAuthConfig
 
-With Litestar Plugin
-~~~~~~~~~~~~~~~~~~~~
+         app = Litestar(
+             plugins=[
+                 OAuthPlugin(
+                     config=OAuthConfig(
+                         redirect_base_url="https://example.com",
+                         github_client_id="your-client-id",
+                         github_client_secret="your-client-secret",
+                         github_scope="read:user user:email",
+                     )
+                 )
+             ],
+         )
 
-.. code-block:: python
+   .. group-tab:: Standalone
 
-   from litestar_oauth.contrib.litestar import OAuthConfig
+      .. code-block:: python
 
-   config = OAuthConfig(
-       redirect_base_url="https://myapp.com",
-       github_client_id="Iv1.abc123456789",
-       github_client_secret="your-client-secret",
-       github_scope="read:user user:email",
-   )
+         from litestar_oauth.providers import GitHubOAuthProvider
+
+         provider = GitHubOAuthProvider(
+             client_id="your-client-id",
+             client_secret="your-client-secret",
+             scope=["read:user", "user:email"],
+         )
+
+         # Generate authorization URL
+         auth_url = provider.get_authorization_url(
+             redirect_uri="https://example.com/auth/github/callback",
+             state="random-state-token",
+         )
+
+         # After callback, exchange code for token
+         token = await provider.exchange_code(
+             code="authorization-code",
+             redirect_uri="https://example.com/auth/github/callback",
+         )
+
+         # Get user info
+         user_info = await provider.get_user_info(token.access_token)
+
 
 Using Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,6 +109,7 @@ Using Environment Variables
 .. code-block:: python
 
    import os
+   from litestar_oauth.providers import GitHubOAuthProvider
 
    github = GitHubOAuthProvider(
        client_id=os.environ["GITHUB_CLIENT_ID"],

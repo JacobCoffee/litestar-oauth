@@ -8,6 +8,9 @@ provider class for any OAuth2/OIDC-compliant identity provider.
    :maxdepth: 2
 
    github
+   google
+   discord
+   generic
 
 
 Available Providers
@@ -45,6 +48,33 @@ Provider Configuration
 All providers require at minimum a ``client_id`` and ``client_secret``, which you obtain
 by registering your application with the OAuth provider.
 
+With Litestar Plugin
+~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   from litestar_oauth.contrib.litestar import OAuthConfig
+
+   config = OAuthConfig(
+       redirect_base_url="https://example.com",
+
+       # GitHub
+       github_client_id="your-github-client-id",
+       github_client_secret="your-github-client-secret",
+
+       # Google
+       google_client_id="your-google-client-id",
+       google_client_secret="your-google-client-secret",
+
+       # Discord
+       discord_client_id="your-discord-client-id",
+       discord_client_secret="your-discord-client-secret",
+
+       # Only enable specific providers (optional)
+       enabled_providers=["github", "google"],
+   )
+
+
 Standalone Usage
 ~~~~~~~~~~~~~~~~
 
@@ -70,33 +100,6 @@ Standalone Usage
    discord = DiscordOAuthProvider(
        client_id="your-discord-client-id",
        client_secret="your-discord-client-secret",
-   )
-
-
-With Litestar Plugin
-~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   from litestar_oauth.contrib.litestar import OAuthConfig
-
-   config = OAuthConfig(
-       redirect_base_url="https://example.com",
-
-       # GitHub
-       github_client_id="your-github-client-id",
-       github_client_secret="your-github-client-secret",
-
-       # Google
-       google_client_id="your-google-client-id",
-       google_client_secret="your-google-client-secret",
-
-       # Discord
-       discord_client_id="your-discord-client-id",
-       discord_client_secret="your-discord-client-secret",
-
-       # Only enable specific providers (optional)
-       enabled_providers=["github", "google"],
    )
 
 
@@ -282,4 +285,7 @@ Next Steps
 ----------
 
 - :doc:`github` - Detailed GitHub OAuth setup guide
+- :doc:`google` - Detailed Google OAuth setup guide
+- :doc:`discord` - Detailed Discord OAuth setup guide
+- :doc:`generic` - Generic provider for any OAuth2/OIDC provider
 - :doc:`/api/index` - Complete API reference

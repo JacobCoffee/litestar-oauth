@@ -83,6 +83,9 @@ autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 autodoc_inherit_docstrings = True
 
+# Mock litestar imports to avoid missing optional dependencies during doc builds
+autodoc_mock_imports = ["litestar", "sniffio"]
+
 # Autosummary settings
 autosummary_generate = True
 
@@ -123,20 +126,8 @@ copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: 
 copybutton_prompt_is_regexp = True
 copybutton_remove_prompts = True
 
-# Suppress warnings for missing references in external packages
-# Note: Types module has both msgspec and dataclass implementations; only one is active at runtime
-# but Sphinx sees both in the source, causing duplicate object warnings
-suppress_warnings = [
-    "myst.header",
-    "autodoc.import_object",  # Suppress warnings when litestar contrib can't be imported
-    "ref.python",  # Suppress duplicate refs from msgspec/dataclass dual implementation
-    "autodoc",  # Suppress autodoc warnings for conditional implementations
-    "py.duplicate_object",  # Suppress duplicate object description warnings
-]
-
-# Filter duplicate warnings from the types module (msgspec vs dataclass dual implementation)
-import warnings
-warnings.filterwarnings("ignore", message="duplicate object description")
+# Suppress warnings
+suppress_warnings = ["myst.header"]
 
 # -- HTML output -------------------------------------------------------------
 html_theme = "shibuya"

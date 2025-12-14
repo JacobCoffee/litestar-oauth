@@ -3,13 +3,13 @@ litestar-oauth
 
 .. rst-class:: lead
 
-   Async OAuth2 authentication library with optional Litestar integration.
+   OAuth2 authentication plugin for Litestar.
 
 ----
 
-**litestar-oauth** is a flexible, async-first OAuth2 authentication library for Python.
-It provides a clean, type-safe API for integrating OAuth2 providers into your applications,
-with first-class support for the `Litestar <https://litestar.dev>`_ web framework.
+**litestar-oauth** provides a clean, type-safe API for integrating OAuth2 providers into
+your `Litestar <https://litestar.dev>`_ applications. Features automatic route registration,
+built-in CSRF protection, and normalized user data across providers.
 
 .. grid:: 1 1 2 2
    :gutter: 2
@@ -122,8 +122,6 @@ Here's a taste of what using litestar-oauth looks like:
 Installation
 ------------
 
-Install the core library:
-
 .. tabs::
 
    .. group-tab:: uv
@@ -150,49 +148,15 @@ Install the core library:
 
          poetry add litestar-oauth
 
-With optional extras:
+Includes Litestar and httpx by default. For provider-specific extras:
 
-.. tabs::
+.. code-block:: bash
 
-   .. group-tab:: uv
+   # Apple Sign In (requires JWT signing)
+   uv add litestar-oauth[apple]
 
-      .. code-block:: bash
-
-         # With Litestar integration
-         uv add litestar-oauth[litestar]
-
-         # With all extras
-         uv add litestar-oauth[all]
-
-   .. group-tab:: pip
-
-      .. code-block:: bash
-
-         # With Litestar integration
-         pip install litestar-oauth[litestar]
-
-         # With all extras
-         pip install litestar-oauth[all]
-
-   .. group-tab:: pdm
-
-      .. code-block:: bash
-
-         # With Litestar integration
-         pdm add litestar-oauth[litestar]
-
-         # With all extras
-         pdm add litestar-oauth[all]
-
-   .. group-tab:: poetry
-
-      .. code-block:: bash
-
-         # With Litestar integration
-         poetry add litestar-oauth[litestar]
-
-         # With all extras
-         poetry add litestar-oauth[all]
+   # All provider extras
+   uv add litestar-oauth[all]
 
 
 Supported Providers

@@ -1,223 +1,132 @@
 API Reference
 =============
 
-Complete API documentation for litestar-oauth. This reference covers all public
-classes, functions, and types.
+Complete API documentation for litestar-oauth.
+
+.. contents:: On this page
+   :local:
+   :depth: 2
 
 
-Base Classes
-------------
+Core Types
+----------
 
-Base classes and protocols for OAuth providers.
+OAuthUserInfo
+~~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. autoclass:: litestar_oauth.types.OAuthUserInfo
+   :no-index:
+
+OAuthToken
+~~~~~~~~~~
+
+.. autoclass:: litestar_oauth.types.OAuthToken
+   :no-index:
+
+OAuthState
+~~~~~~~~~~
+
+.. autoclass:: litestar_oauth.types.OAuthState
+   :no-index:
 
 
 Service
 -------
 
-The OAuthService manages providers and state.
+OAuthService
+~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.service
+.. autoclass:: litestar_oauth.service.OAuthService
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-index:
 
+OAuthStateManager
+~~~~~~~~~~~~~~~~~
 
-Types
------
-
-Core data types for OAuth operations.
-
-.. automodule:: litestar_oauth.types
+.. autoclass:: litestar_oauth.service.OAuthStateManager
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-index:
 
 
-Exceptions
-----------
+Base Classes
+------------
 
-Custom exception hierarchy for OAuth errors.
+BaseOAuthProvider
+~~~~~~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.exceptions
+.. autoclass:: litestar_oauth.base.BaseOAuthProvider
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-index:
+
+OAuthProvider
+~~~~~~~~~~~~~
+
+.. autoclass:: litestar_oauth.base.OAuthProvider
+   :members:
+   :no-index:
 
 
 Providers
 ---------
 
-Pre-built OAuth provider implementations.
+GitHubOAuthProvider
+~~~~~~~~~~~~~~~~~~~
 
-GitHub Provider
-~~~~~~~~~~~~~~~
-
-.. automodule:: litestar_oauth.providers.github
+.. autoclass:: litestar_oauth.providers.github.GitHubOAuthProvider
    :members:
-   :undoc-members:
    :show-inheritance:
+   :no-index:
 
-Google Provider
-~~~~~~~~~~~~~~~
+GoogleOAuthProvider
+~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.providers.google
+.. autoclass:: litestar_oauth.providers.google.GoogleOAuthProvider
    :members:
-   :undoc-members:
    :show-inheritance:
+   :no-index:
 
-Discord Provider
-~~~~~~~~~~~~~~~~
+DiscordOAuthProvider
+~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.providers.discord
+.. autoclass:: litestar_oauth.providers.discord.DiscordOAuthProvider
    :members:
-   :undoc-members:
    :show-inheritance:
+   :no-index:
 
-Generic Provider
-~~~~~~~~~~~~~~~~
+GenericOAuthProvider
+~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: litestar_oauth.providers.generic
+.. autoclass:: litestar_oauth.providers.generic.GenericOAuthProvider
    :members:
-   :undoc-members:
    :show-inheritance:
+   :no-index:
+
+
+Exceptions
+----------
+
+.. automodule:: litestar_oauth.exceptions
+   :members:
+   :show-inheritance:
+   :no-index:
 
 
 Litestar Integration
 --------------------
 
-Components for Litestar framework integration.
+OAuthConfig
+~~~~~~~~~~~
 
-.. note::
-
-   The Litestar integration requires the ``litestar`` extra to be installed:
-
-   .. code-block:: bash
-
-      uv add litestar-oauth[litestar]
-
-Configuration
-~~~~~~~~~~~~~
-
-.. automodule:: litestar_oauth.contrib.litestar.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. autoclass:: litestar_oauth.contrib.litestar.config.OAuthConfig
+   :no-index:
 
 
 Testing Utilities
 -----------------
 
-Mock implementations for testing OAuth flows.
+MockOAuthProvider
+~~~~~~~~~~~~~~~~~
 
-Mocks
-~~~~~
-
-.. automodule:: litestar_oauth.testing.mocks
+.. autoclass:: litestar_oauth.testing.mocks.MockOAuthProvider
    :members:
-   :undoc-members:
-   :show-inheritance:
-
-Fixtures
-~~~~~~~~
-
-.. automodule:: litestar_oauth.testing.fixtures
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Quick Reference
----------------
-
-Common Classes
-~~~~~~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Class
-     - Description
-   * - :class:`~litestar_oauth.service.OAuthService`
-     - Central service for managing OAuth providers and state
-   * - :class:`~litestar_oauth.service.OAuthStateManager`
-     - Manages CSRF state tokens for OAuth flows
-   * - :class:`~litestar_oauth.base.BaseOAuthProvider`
-     - Abstract base class for OAuth providers
-   * - :class:`~litestar_oauth.base.OAuthProvider`
-     - Protocol defining the OAuth provider interface
-
-Data Types
-~~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Type
-     - Description
-   * - :class:`~litestar_oauth.types.OAuthUserInfo`
-     - Normalized user information from OAuth providers
-   * - :class:`~litestar_oauth.types.OAuthToken`
-     - OAuth access token and metadata
-   * - :class:`~litestar_oauth.types.OAuthState`
-     - State parameter for CSRF protection
-
-Providers
-~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Provider
-     - Description
-   * - :class:`~litestar_oauth.providers.github.GitHubOAuthProvider`
-     - GitHub OAuth2 authentication
-   * - :class:`~litestar_oauth.providers.google.GoogleOAuthProvider`
-     - Google OAuth2 with OpenID Connect
-   * - :class:`~litestar_oauth.providers.discord.DiscordOAuthProvider`
-     - Discord OAuth2 authentication
-   * - :class:`~litestar_oauth.providers.generic.GenericOAuthProvider`
-     - Configurable generic OAuth2 provider
-
-Exceptions
-~~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Exception
-     - Description
-   * - :class:`~litestar_oauth.exceptions.OAuthError`
-     - Base exception for all OAuth errors
-   * - :class:`~litestar_oauth.exceptions.ProviderNotConfiguredError`
-     - Provider not registered or misconfigured
-   * - :class:`~litestar_oauth.exceptions.TokenExchangeError`
-     - Authorization code exchange failed
-   * - :class:`~litestar_oauth.exceptions.TokenRefreshError`
-     - Token refresh failed
-   * - :class:`~litestar_oauth.exceptions.UserInfoError`
-     - User info retrieval failed
-   * - :class:`~litestar_oauth.exceptions.InvalidStateError`
-     - Invalid or missing state parameter
-   * - :class:`~litestar_oauth.exceptions.ExpiredStateError`
-     - State token has expired
-
-Litestar Components
-~~~~~~~~~~~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Component
-     - Description
-   * - :class:`~litestar_oauth.contrib.litestar.config.OAuthConfig`
-     - Configuration dataclass for the plugin
+   :no-index:

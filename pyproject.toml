@@ -56,8 +56,11 @@ classifiers = [
   "Topic :: Security",
   "Typing :: Typed",
 ]
-dependencies = []  # Zero required dependencies!
-description = "Async OAuth2 authentication library with optional Litestar integration"
+dependencies = [
+  "httpx>=0.27.0",
+  "litestar>=2.0.0",
+]
+description = "OAuth2 authentication plugin for Litestar"
 keywords = [
   "oauth",
   "oauth2",
@@ -73,25 +76,20 @@ requires-python = ">=3.10"
 version = "0.1.0"
 
 [project.optional-dependencies]
-# Core HTTP client (pick one)
-httpx = ["httpx>=0.27.0"]
+# Standalone usage without Litestar (just the OAuth providers)
+standard = []  # No extra deps needed - httpx is already in base
+
+# Alternative HTTP client
 aiohttp = ["aiohttp>=3.9.0"]
 
 # Provider-specific extras (for providers with special requirements)
 apple = ["pyjwt>=2.8.0", "cryptography>=41.0.0"]  # Apple requires JWT signing
 microsoft = ["msal>=1.26.0"]  # Optional: use Microsoft's official library
 
-# Framework integrations
-litestar = ["litestar>=2.0.0"]
-starlette = ["starlette>=0.27.0"]
-flask = ["flask>=2.0.0", "asgiref>=3.7.0"]
-
-# All providers with recommended HTTP client
+# All provider extras
 all = [
-  "httpx>=0.27.0",
   "pyjwt>=2.8.0",
   "cryptography>=41.0.0",
-  "litestar>=2.0.0",
 ]
 
 [project.urls]
