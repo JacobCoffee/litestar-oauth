@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="teal" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>litestar_oauth.contrib.litestar.config - litestar-oauth</title><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/shibuya.css?v=83cb36c2" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=72a73842" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="litestar_oauth.contrib.litestar.config"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../../index.html">
+      
+      
+      <strong>litestar-oauth</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul><li class="link">
+          <a href="https://litestar.dev/">
+            <span>Litestar</span></a>
+        </li><li class="link">
+          <a href="https://pypi.org/project/litestar-oauth/">
+            <span>PyPI</span></a>
+        </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Learn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting-started/quickstart.html">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../providers/index.html">OAuth Providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../providers/github.html">GitHub OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../providers/google.html">Google OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../providers/discord.html">Discord OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../providers/generic.html">Generic OAuth Provider</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/index.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/JacobCoffee/litestar-oauth">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/litestar-919193495116337154">Discord</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../../index.html"><span itemprop="name">litestar-oauth</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">litestar_oauth.contrib.litestar.config</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  
+  <article class="yue" role="main">
+          <h1>Source code for litestar_oauth.contrib.litestar.config</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">&quot;&quot;&quot;Configuration for the Litestar OAuth plugin.</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="sd">This module provides the configuration dataclass for the Litestar OAuth plugin,</span>
+</span><span data-line="4"><span class="sd">allowing users to configure OAuth providers and plugin behavior.</span>
+</span><span data-line="5"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+</span><span data-line="10"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+</span><span data-line="13">    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+</span><span data-line="14">
+</span><span data-line="15">
+<div class="viewcode-block" id="OAuthConfig">
+<a class="viewcode-back" href="../../../../api/index.html#litestar_oauth.contrib.litestar.config.OAuthConfig">[docs]</a>
+</span><span data-line="16"><span class="nd">@dataclass</span>
+</span><span data-line="17"><span class="k">class</span><span class="w"> </span><span class="nc">OAuthConfig</span><span class="p">:</span>
+</span><span data-line="18"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for the Litestar OAuth plugin.</span>
+</span><span data-line="19">
+</span><span data-line="20"><span class="sd">    This configuration class allows you to set up OAuth providers and customize</span>
+</span><span data-line="21"><span class="sd">    the behavior of the OAuth authentication flow.</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="sd">    Attributes:</span>
+</span><span data-line="24"><span class="sd">        redirect_base_url: Base URL for OAuth callbacks (e.g., &quot;https://example.com&quot;)</span>
+</span><span data-line="25"><span class="sd">        route_prefix: URL prefix for OAuth routes (default: &quot;/auth&quot;)</span>
+</span><span data-line="26"><span class="sd">        success_redirect: URL to redirect to after successful authentication (default: &quot;/dashboard&quot;)</span>
+</span><span data-line="27"><span class="sd">        failure_redirect: URL to redirect to after failed authentication (default: &quot;/login?error=oauth&quot;)</span>
+</span><span data-line="28"><span class="sd">        state_ttl: Time-to-live for OAuth state tokens in seconds (default: 600)</span>
+</span><span data-line="29"><span class="sd">        enabled_providers: List of provider names to enable. If None, all configured providers are enabled.</span>
+</span><span data-line="30"><span class="sd">        github_client_id: GitHub OAuth client ID</span>
+</span><span data-line="31"><span class="sd">        github_client_secret: GitHub OAuth client secret</span>
+</span><span data-line="32"><span class="sd">        github_scope: GitHub OAuth scopes (default: &quot;user:email&quot;)</span>
+</span><span data-line="33"><span class="sd">        google_client_id: Google OAuth client ID</span>
+</span><span data-line="34"><span class="sd">        google_client_secret: Google OAuth client secret</span>
+</span><span data-line="35"><span class="sd">        google_scope: Google OAuth scopes (default: &quot;openid email profile&quot;)</span>
+</span><span data-line="36"><span class="sd">        discord_client_id: Discord OAuth client ID</span>
+</span><span data-line="37"><span class="sd">        discord_client_secret: Discord OAuth client secret</span>
+</span><span data-line="38"><span class="sd">        discord_scope: Discord OAuth scopes (default: &quot;identify email&quot;)</span>
+</span><span data-line="39"><span class="sd">        microsoft_client_id: Microsoft OAuth client ID</span>
+</span><span data-line="40"><span class="sd">        microsoft_client_secret: Microsoft OAuth client secret</span>
+</span><span data-line="41"><span class="sd">        microsoft_tenant_id: Microsoft tenant ID (default: &quot;common&quot;)</span>
+</span><span data-line="42"><span class="sd">        microsoft_scope: Microsoft OAuth scopes (default: &quot;openid email profile&quot;)</span>
+</span><span data-line="43"><span class="sd">        apple_client_id: Apple Sign In client ID</span>
+</span><span data-line="44"><span class="sd">        apple_team_id: Apple team ID</span>
+</span><span data-line="45"><span class="sd">        apple_key_id: Apple key ID</span>
+</span><span data-line="46"><span class="sd">        apple_private_key: Apple private key for JWT signing</span>
+</span><span data-line="47"><span class="sd">        apple_scope: Apple OAuth scopes (default: &quot;name email&quot;)</span>
+</span><span data-line="48"><span class="sd">        gitlab_client_id: GitLab OAuth client ID</span>
+</span><span data-line="49"><span class="sd">        gitlab_client_secret: GitLab OAuth client secret</span>
+</span><span data-line="50"><span class="sd">        gitlab_url: GitLab instance URL (default: &quot;https://gitlab.com&quot;)</span>
+</span><span data-line="51"><span class="sd">        gitlab_scope: GitLab OAuth scopes (default: &quot;read_user&quot;)</span>
+</span><span data-line="52"><span class="sd">        twitter_client_id: Twitter/X OAuth client ID</span>
+</span><span data-line="53"><span class="sd">        twitter_client_secret: Twitter/X OAuth client secret</span>
+</span><span data-line="54"><span class="sd">        twitter_scope: Twitter OAuth scopes (default: &quot;users.read tweet.read&quot;)</span>
+</span><span data-line="55"><span class="sd">        facebook_client_id: Facebook OAuth client ID</span>
+</span><span data-line="56"><span class="sd">        facebook_client_secret: Facebook OAuth client secret</span>
+</span><span data-line="57"><span class="sd">        facebook_scope: Facebook OAuth scopes (default: &quot;email public_profile&quot;)</span>
+</span><span data-line="58"><span class="sd">        linkedin_client_id: LinkedIn OAuth client ID</span>
+</span><span data-line="59"><span class="sd">        linkedin_client_secret: LinkedIn OAuth client secret</span>
+</span><span data-line="60"><span class="sd">        linkedin_scope: LinkedIn OAuth scopes (default: &quot;openid email profile&quot;)</span>
+</span><span data-line="61"><span class="sd">        bitbucket_client_id: Bitbucket OAuth client ID</span>
+</span><span data-line="62"><span class="sd">        bitbucket_client_secret: Bitbucket OAuth client secret</span>
+</span><span data-line="63"><span class="sd">        bitbucket_scope: Bitbucket OAuth scopes (default: &quot;account email&quot;)</span>
+</span><span data-line="64">
+</span><span data-line="65"><span class="sd">    Example::</span>
+</span><span data-line="66">
+</span><span data-line="67"><span class="sd">        from litestar import Litestar</span>
+</span><span data-line="68"><span class="sd">        from litestar_oauth.contrib.litestar import OAuthPlugin, OAuthConfig</span>
+</span><span data-line="69">
+</span><span data-line="70"><span class="sd">        app = Litestar(</span>
+</span><span data-line="71"><span class="sd">            plugins=[</span>
+</span><span data-line="72"><span class="sd">                OAuthPlugin(</span>
+</span><span data-line="73"><span class="sd">                    config=OAuthConfig(</span>
+</span><span data-line="74"><span class="sd">                        redirect_base_url=&quot;https://example.com&quot;,</span>
+</span><span data-line="75"><span class="sd">                        github_client_id=&quot;your-client-id&quot;,</span>
+</span><span data-line="76"><span class="sd">                        github_client_secret=&quot;your-client-secret&quot;,</span>
+</span><span data-line="77"><span class="sd">                        google_client_id=&quot;your-client-id&quot;,</span>
+</span><span data-line="78"><span class="sd">                        google_client_secret=&quot;your-client-secret&quot;,</span>
+</span><span data-line="79"><span class="sd">                        enabled_providers=[&quot;github&quot;, &quot;google&quot;],</span>
+</span><span data-line="80"><span class="sd">                    )</span>
+</span><span data-line="81"><span class="sd">                )</span>
+</span><span data-line="82"><span class="sd">            ],</span>
+</span><span data-line="83"><span class="sd">        )</span>
+</span><span data-line="84"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="85">
+</span><span data-line="86">    <span class="c1"># Core configuration</span>
+</span><span data-line="87">    <span class="n">redirect_base_url</span><span class="p">:</span> <span class="nb">str</span>
+</span><span data-line="88">    <span class="n">route_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/auth&quot;</span>
+</span><span data-line="89">    <span class="n">success_redirect</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/dashboard&quot;</span>
+</span><span data-line="90">    <span class="n">failure_redirect</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/login?error=oauth&quot;</span>
+</span><span data-line="91">    <span class="n">state_ttl</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">600</span>
+</span><span data-line="92">    <span class="n">enabled_providers</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="93">
+</span><span data-line="94">    <span class="c1"># GitHub</span>
+</span><span data-line="95">    <span class="n">github_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="96">    <span class="n">github_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="97">    <span class="n">github_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;user:email&quot;</span>
+</span><span data-line="98">
+</span><span data-line="99">    <span class="c1"># Google</span>
+</span><span data-line="100">    <span class="n">google_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="101">    <span class="n">google_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="102">    <span class="n">google_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;openid email profile&quot;</span>
+</span><span data-line="103">
+</span><span data-line="104">    <span class="c1"># Discord</span>
+</span><span data-line="105">    <span class="n">discord_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="106">    <span class="n">discord_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="107">    <span class="n">discord_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;identify email&quot;</span>
+</span><span data-line="108">
+</span><span data-line="109">    <span class="c1"># Microsoft/Azure AD</span>
+</span><span data-line="110">    <span class="n">microsoft_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="111">    <span class="n">microsoft_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="112">    <span class="n">microsoft_tenant_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;common&quot;</span>
+</span><span data-line="113">    <span class="n">microsoft_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;openid email profile&quot;</span>
+</span><span data-line="114">
+</span><span data-line="115">    <span class="c1"># Apple Sign In</span>
+</span><span data-line="116">    <span class="n">apple_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="117">    <span class="n">apple_team_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="118">    <span class="n">apple_key_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="119">    <span class="n">apple_private_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="120">    <span class="n">apple_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;name email&quot;</span>
+</span><span data-line="121">
+</span><span data-line="122">    <span class="c1"># GitLab</span>
+</span><span data-line="123">    <span class="n">gitlab_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="124">    <span class="n">gitlab_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="125">    <span class="n">gitlab_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://gitlab.com&quot;</span>
+</span><span data-line="126">    <span class="n">gitlab_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;read_user&quot;</span>
+</span><span data-line="127">
+</span><span data-line="128">    <span class="c1"># Twitter/X</span>
+</span><span data-line="129">    <span class="n">twitter_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="130">    <span class="n">twitter_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="131">    <span class="n">twitter_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;users.read tweet.read&quot;</span>
+</span><span data-line="132">
+</span><span data-line="133">    <span class="c1"># Facebook/Meta</span>
+</span><span data-line="134">    <span class="n">facebook_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="135">    <span class="n">facebook_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="136">    <span class="n">facebook_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;email public_profile&quot;</span>
+</span><span data-line="137">
+</span><span data-line="138">    <span class="c1"># LinkedIn</span>
+</span><span data-line="139">    <span class="n">linkedin_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="140">    <span class="n">linkedin_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="141">    <span class="n">linkedin_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;openid email profile&quot;</span>
+</span><span data-line="142">
+</span><span data-line="143">    <span class="c1"># Bitbucket</span>
+</span><span data-line="144">    <span class="n">bitbucket_client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="145">    <span class="n">bitbucket_client_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="146">    <span class="n">bitbucket_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;account email&quot;</span>
+</span><span data-line="147">
+<div class="viewcode-block" id="OAuthConfig.get_configured_providers">
+<a class="viewcode-back" href="../../../../api/index.html#litestar_oauth.contrib.litestar.config.OAuthConfig.get_configured_providers">[docs]</a>
+</span><span data-line="148">    <span class="k">def</span><span class="w"> </span><span class="nf">get_configured_providers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+</span><span data-line="149"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a dictionary of configured providers with their credentials.</span>
+</span><span data-line="150">
+</span><span data-line="151"><span class="sd">        Returns:</span>
+</span><span data-line="152"><span class="sd">            A dictionary mapping provider names to their configuration dictionaries.</span>
+</span><span data-line="153"><span class="sd">            Each configuration includes client_id, client_secret, and scope.</span>
+</span><span data-line="154">
+</span><span data-line="155"><span class="sd">        Example::</span>
+</span><span data-line="156">
+</span><span data-line="157"><span class="sd">            config = OAuthConfig(</span>
+</span><span data-line="158"><span class="sd">                redirect_base_url=&quot;https://example.com&quot;,</span>
+</span><span data-line="159"><span class="sd">                github_client_id=&quot;id&quot;,</span>
+</span><span data-line="160"><span class="sd">                github_client_secret=&quot;secret&quot;,</span>
+</span><span data-line="161"><span class="sd">            )</span>
+</span><span data-line="162"><span class="sd">            providers = config.get_configured_providers()</span>
+</span><span data-line="163"><span class="sd">            # {&quot;github&quot;: {&quot;client_id&quot;: &quot;id&quot;, &quot;client_secret&quot;: &quot;secret&quot;, &quot;scope&quot;: &quot;user:email&quot;}}</span>
+</span><span data-line="164"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="165">        <span class="n">providers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="166">
+</span><span data-line="167">        <span class="c1"># GitHub</span>
+</span><span data-line="168">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">github_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">github_client_secret</span><span class="p">:</span>
+</span><span data-line="169">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;github&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="170">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">github_client_id</span><span class="p">,</span>
+</span><span data-line="171">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">github_client_secret</span><span class="p">,</span>
+</span><span data-line="172">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">github_scope</span><span class="p">,</span>
+</span><span data-line="173">            <span class="p">}</span>
+</span><span data-line="174">
+</span><span data-line="175">        <span class="c1"># Google</span>
+</span><span data-line="176">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_client_secret</span><span class="p">:</span>
+</span><span data-line="177">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;google&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="178">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_client_id</span><span class="p">,</span>
+</span><span data-line="179">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_client_secret</span><span class="p">,</span>
+</span><span data-line="180">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_scope</span><span class="p">,</span>
+</span><span data-line="181">            <span class="p">}</span>
+</span><span data-line="182">
+</span><span data-line="183">        <span class="c1"># Discord</span>
+</span><span data-line="184">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">discord_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">discord_client_secret</span><span class="p">:</span>
+</span><span data-line="185">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;discord&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="186">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">discord_client_id</span><span class="p">,</span>
+</span><span data-line="187">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">discord_client_secret</span><span class="p">,</span>
+</span><span data-line="188">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">discord_scope</span><span class="p">,</span>
+</span><span data-line="189">            <span class="p">}</span>
+</span><span data-line="190">
+</span><span data-line="191">        <span class="c1"># Microsoft</span>
+</span><span data-line="192">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_client_secret</span><span class="p">:</span>
+</span><span data-line="193">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;microsoft&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="194">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_client_id</span><span class="p">,</span>
+</span><span data-line="195">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_client_secret</span><span class="p">,</span>
+</span><span data-line="196">                <span class="s2">&quot;tenant_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_tenant_id</span><span class="p">,</span>
+</span><span data-line="197">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">microsoft_scope</span><span class="p">,</span>
+</span><span data-line="198">            <span class="p">}</span>
+</span><span data-line="199">
+</span><span data-line="200">        <span class="c1"># Apple</span>
+</span><span data-line="201">        <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">apple_client_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_team_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_key_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_private_key</span><span class="p">]):</span>
+</span><span data-line="202">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="203">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_client_id</span><span class="p">,</span>
+</span><span data-line="204">                <span class="s2">&quot;team_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_team_id</span><span class="p">,</span>  <span class="c1"># type: ignore[typeddict-item]</span>
+</span><span data-line="205">                <span class="s2">&quot;key_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_key_id</span><span class="p">,</span>  <span class="c1"># type: ignore[typeddict-item]</span>
+</span><span data-line="206">                <span class="s2">&quot;private_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_private_key</span><span class="p">,</span>  <span class="c1"># type: ignore[typeddict-item]</span>
+</span><span data-line="207">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apple_scope</span><span class="p">,</span>
+</span><span data-line="208">            <span class="p">}</span>
+</span><span data-line="209">
+</span><span data-line="210">        <span class="c1"># GitLab</span>
+</span><span data-line="211">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_client_secret</span><span class="p">:</span>
+</span><span data-line="212">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;gitlab&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="213">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_client_id</span><span class="p">,</span>
+</span><span data-line="214">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_client_secret</span><span class="p">,</span>
+</span><span data-line="215">                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_url</span><span class="p">,</span>  <span class="c1"># type: ignore[typeddict-item]</span>
+</span><span data-line="216">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gitlab_scope</span><span class="p">,</span>
+</span><span data-line="217">            <span class="p">}</span>
+</span><span data-line="218">
+</span><span data-line="219">        <span class="c1"># Twitter</span>
+</span><span data-line="220">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">twitter_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">twitter_client_secret</span><span class="p">:</span>
+</span><span data-line="221">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;twitter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="222">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">twitter_client_id</span><span class="p">,</span>
+</span><span data-line="223">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">twitter_client_secret</span><span class="p">,</span>
+</span><span data-line="224">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">twitter_scope</span><span class="p">,</span>
+</span><span data-line="225">            <span class="p">}</span>
+</span><span data-line="226">
+</span><span data-line="227">        <span class="c1"># Facebook</span>
+</span><span data-line="228">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">facebook_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">facebook_client_secret</span><span class="p">:</span>
+</span><span data-line="229">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;facebook&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="230">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">facebook_client_id</span><span class="p">,</span>
+</span><span data-line="231">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">facebook_client_secret</span><span class="p">,</span>
+</span><span data-line="232">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">facebook_scope</span><span class="p">,</span>
+</span><span data-line="233">            <span class="p">}</span>
+</span><span data-line="234">
+</span><span data-line="235">        <span class="c1"># LinkedIn</span>
+</span><span data-line="236">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkedin_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkedin_client_secret</span><span class="p">:</span>
+</span><span data-line="237">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;linkedin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="238">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkedin_client_id</span><span class="p">,</span>
+</span><span data-line="239">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkedin_client_secret</span><span class="p">,</span>
+</span><span data-line="240">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkedin_scope</span><span class="p">,</span>
+</span><span data-line="241">            <span class="p">}</span>
+</span><span data-line="242">
+</span><span data-line="243">        <span class="c1"># Bitbucket</span>
+</span><span data-line="244">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitbucket_client_id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitbucket_client_secret</span><span class="p">:</span>
+</span><span data-line="245">            <span class="n">providers</span><span class="p">[</span><span class="s2">&quot;bitbucket&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="246">                <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitbucket_client_id</span><span class="p">,</span>
+</span><span data-line="247">                <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitbucket_client_secret</span><span class="p">,</span>
+</span><span data-line="248">                <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitbucket_scope</span><span class="p">,</span>
+</span><span data-line="249">            <span class="p">}</span>
+</span><span data-line="250">
+</span><span data-line="251">        <span class="c1"># Filter by enabled_providers if specified</span>
+</span><span data-line="252">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled_providers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="253">            <span class="n">providers</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">config</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">providers</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled_providers</span><span class="p">}</span>
+</span><span data-line="254">
+</span><span data-line="255">        <span class="k">return</span> <span class="n">providers</span></div>
+</div>
+
+</span><span data-line="256">
+</span><span data-line="257">
+</span><span data-line="258"><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;OAuthConfig&quot;</span><span class="p">]</span>
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Jacob Coffee</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=30646c52"></script>
+      <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../../_static/shibuya.js?v=cac61aee"></script></body>
+</html>
