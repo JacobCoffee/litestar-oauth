@@ -10,6 +10,12 @@ provider class for any OAuth2/OIDC-compliant identity provider.
    github
    google
    discord
+   microsoft
+   gitlab
+   twitter
+   facebook
+   linkedin
+   bitbucket
    generic
 
 
@@ -36,6 +42,30 @@ Available Providers
      - ``DiscordOAuthProvider``
      - ``identify``, ``email``
      - User profile, avatar (CDN URL)
+   * - Microsoft
+     - ``MicrosoftOAuthProvider``
+     - ``openid``, ``email``, ``profile``
+     - Azure AD, multi-tenant support
+   * - GitLab
+     - ``GitLabOAuthProvider``
+     - ``read_user``, ``email``
+     - Self-hosted instance support
+   * - Twitter/X
+     - ``TwitterOAuthProvider``
+     - ``users.read``, ``tweet.read``
+     - PKCE support required
+   * - Facebook
+     - ``FacebookOAuthProvider``
+     - ``email``, ``public_profile``
+     - User profile, avatar
+   * - LinkedIn
+     - ``LinkedInOAuthProvider``
+     - ``openid``, ``email``, ``profile``
+     - OpenID Connect support
+   * - Bitbucket
+     - ``BitbucketOAuthProvider``
+     - ``account``, ``email``
+     - User profile, email
    * - Generic
      - ``GenericOAuthProvider``
      - Configurable
