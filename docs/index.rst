@@ -180,6 +180,24 @@ litestar-oauth includes built-in support for popular OAuth providers:
    * - Discord
      - ``DiscordOAuthProvider``
      - ``identify``, ``email``
+   * - Microsoft
+     - ``MicrosoftOAuthProvider``
+     - ``openid``, ``email``, ``profile``
+   * - GitLab
+     - ``GitLabOAuthProvider``
+     - ``read_user``, ``email``
+   * - Twitter/X
+     - ``TwitterOAuthProvider``
+     - ``users.read``, ``tweet.read``
+   * - Facebook
+     - ``FacebookOAuthProvider``
+     - ``email``, ``public_profile``
+   * - LinkedIn
+     - ``LinkedInOAuthProvider``
+     - ``openid``, ``email``, ``profile``
+   * - Bitbucket
+     - ``BitbucketOAuthProvider``
+     - ``account``, ``email``
    * - Generic
      - ``GenericOAuthProvider``
      - Configurable
