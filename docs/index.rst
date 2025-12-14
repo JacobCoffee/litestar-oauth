@@ -148,15 +148,7 @@ Installation
 
          poetry add litestar-oauth
 
-Includes Litestar and httpx by default. For provider-specific extras:
-
-.. code-block:: bash
-
-   # Apple Sign In (requires JWT signing)
-   uv add litestar-oauth[apple]
-
-   # All provider extras
-   uv add litestar-oauth[all]
+Includes Litestar and httpx by default.
 
 
 Supported Providers

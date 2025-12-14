@@ -76,21 +76,8 @@ requires-python = ">=3.10"
 version = "0.1.0"
 
 [project.optional-dependencies]
-# Standalone usage without Litestar (just the OAuth providers)
-standard = []  # No extra deps needed - httpx is already in base
-
 # Alternative HTTP client
 aiohttp = ["aiohttp>=3.9.0"]
-
-# Provider-specific extras (for providers with special requirements)
-apple = ["pyjwt>=2.8.0", "cryptography>=41.0.0"]  # Apple requires JWT signing
-microsoft = ["msal>=1.26.0"]  # Optional: use Microsoft's official library
-
-# All provider extras
-all = [
-  "pyjwt>=2.8.0",
-  "cryptography>=41.0.0",
-]
 
 [project.urls]
 Changelog = "https://github.com/JacobCoffee/litestar-oauth/releases/"
