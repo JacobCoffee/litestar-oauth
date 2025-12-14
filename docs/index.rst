@@ -57,65 +57,66 @@ Quick Example
 
 Here's a taste of what using litestar-oauth looks like:
 
-**Standalone Usage (without Litestar):**
+.. tabs::
 
-.. code-block:: python
+   .. group-tab:: Litestar Plugin
 
-   from litestar_oauth import OAuthService
-   from litestar_oauth.providers import GitHubOAuthProvider
+      .. code-block:: python
 
-   # Configure providers
-   github = GitHubOAuthProvider(
-       client_id="your-client-id",
-       client_secret="your-client-secret",
-   )
+         from litestar import Litestar
+         from litestar_oauth.contrib.litestar import OAuthPlugin, OAuthConfig
 
-   # Create service and register provider
-   oauth_service = OAuthService()
-   oauth_service.register(github)
+         app = Litestar(
+             plugins=[
+                 OAuthPlugin(
+                     config=OAuthConfig(
+                         redirect_base_url="https://example.com",
+                         github_client_id="your-client-id",
+                         github_client_secret="your-client-secret",
+                         google_client_id="your-google-id",
+                         google_client_secret="your-google-secret",
+                     )
+                 )
+             ],
+         )
 
-   # Generate authorization URL
-   auth_url = await oauth_service.get_authorization_url(
-       provider_name="github",
-       redirect_uri="https://example.com/callback",
-   )
+         # Routes automatically registered:
+         # GET /auth/{provider}/login - Redirect to OAuth provider
+         # GET /auth/{provider}/callback - Handle OAuth callback
 
-   # After user authorizes, exchange code for token
-   provider = oauth_service.get_provider("github")
-   token = await provider.exchange_code(
-       code="authorization-code",
-       redirect_uri="https://example.com/callback",
-   )
+   .. group-tab:: Standalone
 
-   # Fetch user information
-   user_info = await provider.get_user_info(token.access_token)
-   print(f"Welcome, {user_info.username}!")
+      .. code-block:: python
 
+         from litestar_oauth import OAuthService
+         from litestar_oauth.providers import GitHubOAuthProvider
 
-**With Litestar Plugin:**
+         # Configure providers
+         github = GitHubOAuthProvider(
+             client_id="your-client-id",
+             client_secret="your-client-secret",
+         )
 
-.. code-block:: python
+         # Create service and register provider
+         oauth_service = OAuthService()
+         oauth_service.register(github)
 
-   from litestar import Litestar
-   from litestar_oauth.contrib.litestar import OAuthPlugin, OAuthConfig
+         # Generate authorization URL
+         auth_url = await oauth_service.get_authorization_url(
+             provider_name="github",
+             redirect_uri="https://example.com/callback",
+         )
 
-   app = Litestar(
-       plugins=[
-           OAuthPlugin(
-               config=OAuthConfig(
-                   redirect_base_url="https://example.com",
-                   github_client_id="your-client-id",
-                   github_client_secret="your-client-secret",
-                   google_client_id="your-google-id",
-                   google_client_secret="your-google-secret",
-               )
-           )
-       ],
-   )
+         # After user authorizes, exchange code for token
+         provider = oauth_service.get_provider("github")
+         token = await provider.exchange_code(
+             code="authorization-code",
+             redirect_uri="https://example.com/callback",
+         )
 
-   # Routes automatically registered:
-   # GET /auth/{provider}/login - Redirect to OAuth provider
-   # GET /auth/{provider}/callback - Handle OAuth callback
+         # Fetch user information
+         user_info = await provider.get_user_info(token.access_token)
+         print(f"Welcome, {user_info.username}!")
 
 
 Installation
