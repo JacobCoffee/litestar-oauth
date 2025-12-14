@@ -1,6 +1,6 @@
 [build-system]
-build-backend = "hatchling.build"
-requires = ["hatchling"]
+build-backend = "uv_build"
+requires = ["uv_build>=0.9.11,<0.10.0"]
 
 [dependency-groups]
 docs = [
@@ -311,6 +311,3 @@ exclude = ["docs/conf.py", "tests/", "src/litestar_oauth/testing/", "src/litesta
 
 [tool.uv]
 default-groups = ["dev"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/litestar_oauth"]
