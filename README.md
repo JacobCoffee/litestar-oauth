@@ -93,6 +93,16 @@ print(f"Hello, {user_info.username}!")
 
 Use `GenericOAuthProvider` for any OAuth2/OIDC provider like Keycloak, Auth0, Okta, or Azure AD.
 
+## Optional Extras
+
+```bash
+# Apple Sign In (requires JWT signing)
+uv add litestar-oauth[apple]
+
+# All provider extras
+uv add litestar-oauth[all]
+```
+
 ## Links
 
 - [Documentation](https://jacobcoffee.github.io/litestar-oauth)
