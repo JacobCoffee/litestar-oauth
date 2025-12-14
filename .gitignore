@@ -1,0 +1,44 @@
+## Python
+.venv
+venv
+__pycache__
+.pytest_cache
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+__pypackages__/
+docs/_build/
+*.egg-info/
+dist/
+build/
+*.egg
+*.pyc
+*.pyo
+
+## Coverage
+.coverage
+coverage.xml
+coverage.json
+htmlcov/
+
+## Editors
+.idea/
+.vimspector.json
+.vscode/
+.*.sw?
+.sw?
+
+## Environment
+.env
+.env.*
+
+## Tooling
+.tool-versions
+
+## Claude Flow
+.claude-flow/
+.hive-mind/
+
+## Project
+*.db

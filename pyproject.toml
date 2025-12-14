@@ -1,0 +1,311 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[dependency-groups]
+docs = [
+  "linkify-it-py>=2.0.0",
+  "myst-parser>=2.0.0",
+  "shibuya>=2024.8.0",
+  "sphinx>=7.0.0",
+  "sphinx-autobuild>=2024.0.0",
+  "sphinx-autodoc-typehints>=2.0.0",
+  "sphinx-copybutton>=0.5.0",
+  "sphinx-design>=0.5.0",
+  "sphinx-tabs>=3.4.0",
+]
+lint = [
+  "codespell>=2.2.6",
+  "prek>=0.2.18",
+  "ruff>=0.8.0",
+  "ty>=0.0.1a27",
+]
+test = [
+  "httpx>=0.27.0",
+  "litestar[testing]>=2.0.0",
+  "pytest>=8.1.1",
+  "pytest-asyncio>=0.23.6",
+  "pytest-cov>=4.1.0",
+  "pytest-httpx>=0.30.0",
+  "pytest-sugar>=1.1.1",
+  "respx>=0.21.0",
+]
+dev = [
+  {include-group = "docs"},
+  {include-group = "lint"},
+  {include-group = "test"},
+]
+
+[project]
+authors = [
+  {name = "Jacob Coffee", email = "jacob@z7x.org"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Web Environment",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Internet :: WWW/HTTP :: Session",
+  "Topic :: Security",
+  "Typing :: Typed",
+]
+dependencies = []  # Zero required dependencies!
+description = "Async OAuth2 authentication library with optional Litestar integration"
+keywords = [
+  "oauth",
+  "oauth2",
+  "authentication",
+  "litestar",
+  "async",
+  "oidc",
+]
+license = {text = "MIT"}
+name = "litestar-oauth"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[project.optional-dependencies]
+# Core HTTP client (pick one)
+httpx = ["httpx>=0.27.0"]
+aiohttp = ["aiohttp>=3.9.0"]
+
+# Provider-specific extras (for providers with special requirements)
+apple = ["pyjwt>=2.8.0", "cryptography>=41.0.0"]  # Apple requires JWT signing
+microsoft = ["msal>=1.26.0"]  # Optional: use Microsoft's official library
+
+# Framework integrations
+litestar = ["litestar>=2.0.0"]
+starlette = ["starlette>=0.27.0"]
+flask = ["flask>=2.0.0", "asgiref>=3.7.0"]
+
+# All providers with recommended HTTP client
+all = [
+  "httpx>=0.27.0",
+  "pyjwt>=2.8.0",
+  "cryptography>=41.0.0",
+  "litestar>=2.0.0",
+]
+
+[project.urls]
+Changelog = "https://github.com/JacobCoffee/litestar-oauth/releases/"
+Discord = "https://discord.gg/litestar-919193495116337154"
+Documentation = "https://jacobcoffee.github.io/litestar-oauth"
+"Issue Tracker" = "https://github.com/JacobCoffee/litestar-oauth/issues"
+Repository = "https://github.com/JacobCoffee/litestar-oauth"
+
+[tool.codespell]
+skip = "uv.lock"
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+  "\\.\\.\\.",
+  "@abstractmethod",
+  "class .*(Protocol):",
+]
+fail_under = 0
+
+[tool.coverage.run]
+concurrency = ["multiprocessing", "thread"]
+omit = ["*/tests/*"]
+parallel = true
+source = ["litestar_oauth"]
+
+[tool.git-cliff.changelog]
+header = """
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+"""
+body = """
+{% if version %}\
+    {% if previous.version %}\
+## [{{ version | trim_start_matches(pat="v") }}]($REPO/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% else %}\
+## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% endif %}\
+{% else %}\
+## [unreleased]
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+
+### {{ group | striptags | trim | upper_first }}
+
+{% for commit in commits
+| filter(attribute="scope")
+| sort(attribute="scope") %}
+- **({{commit.scope}})**{% if commit.breaking %} [**breaking**]{% endif %} {{ commit.message }} - ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }})) - {{ commit.author.name }}
+{%- endfor -%}
+{%- for commit in commits %}
+{%- if commit.scope -%}
+{% else %}
+- {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message }} - ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }})) - {{ commit.author.name }}
+{% endif -%}
+{% endfor -%}
+{% endfor %}
+"""
+footer = """
+---
+*litestar-oauth Changelog*
+"""
+output = "docs/changelog.md"
+postprocessors = [
+  {pattern = '\$REPO', replace = "https://github.com/JacobCoffee/litestar-oauth"},
+]
+trim = true
+
+[tool.git-cliff.git]
+commit_parsers = [
+  {message = "^feat", group = "Features"},
+  {message = "^fix", group = "Bug Fixes"},
+  {message = "^doc", group = "Documentation"},
+  {message = "^perf", group = "Performance"},
+  {message = "^refactor", group = "Refactoring"},
+  {message = "^style", group = "Style"},
+  {message = "^revert", group = "Revert"},
+  {message = "^test", group = "Tests"},
+  {message = "^chore\\(version\\):", skip = true},
+  {message = "^chore", group = "Miscellaneous Chores"},
+  {body = ".*security", group = "Security"},
+]
+commit_preprocessors = []
+conventional_commits = true
+filter_commits = false
+filter_unconventional = true
+ignore_tags = ""
+protect_breaking_commits = false
+skip_tags = "v0.1.0-beta.1"
+sort_commits = "oldest"
+split_commits = false
+tag_pattern = "v[0-9].*"
+topo_order = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = ["-v", "--strict-markers", "--tb=short"]
+markers = [
+  "unit: mark test as unit test",
+  "integration: mark test as integration test",
+]
+
+[tool.ruff]
+fix = true
+line-length = 120
+src = ["src/litestar_oauth", "tests"]
+target-version = "py310"
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 88
+indent-style = "space"
+quote-style = "double"
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+ignore = [
+  "ERA001",   # Commented-out code
+  "TD",       # TODOs
+  "FIX002",   # Line contains TODO
+  "COM812",   # Missing trailing comma (conflicts with formatter)
+  "ISC001",   # Single-line string concatenation (conflicts with formatter)
+  "ANN401",   # Dynamically typed Any
+  "TC003",    # Move stdlib imports to TYPE_CHECKING
+  "EM101",    # Exception string literal
+  "EM102",    # Exception f-string literal
+  "TRY003",   # Long exception message
+  "TRY002",   # Raise vanilla Exception
+  "ARG002",   # Unused method argument - for abstract base classes
+  "FBT001",   # Boolean positional argument
+  "FBT002",   # Boolean default argument
+  "FBT003",   # Boolean positional value in function call
+  "PLC0415",  # Import not at top of file - needed for lazy imports
+  "PLR0911",  # Too many return statements
+  "PLR0913",  # Too many arguments
+  "PLR2004",  # Magic value used in comparison
+  "S105",     # Possible hardcoded password - false positives on defaults
+  "S106",     # Possible hardcoded password - false positives on URLs
+  "S107",     # Possible hardcoded password - false positives on hints
+  "A005",     # Module shadows stdlib - types.py is intentional
+  "D",        # Docstrings - will add later
+]
+select = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["litestar_oauth", "tests"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.lint.per-file-ignores]
+"docs/conf.py" = [
+  "A001",
+  "INP001",
+  "PTH",
+  "DTZ",
+]
+"tests/**/*.*" = [
+  "A",
+  "ANN",
+  "ARG",
+  "B",
+  "BLE",
+  "C901",
+  "D",
+  "DTZ",
+  "EM",
+  "ERA001",
+  "F841",
+  "FBT",
+  "G",
+  "N",
+  "PGH",
+  "PIE",
+  "PLR",
+  "PLW",
+  "PT011",
+  "PTH",
+  "RET504",
+  "RSE",
+  "S",
+  "S101",
+  "SIM",
+  "SLF001",
+  "TCH",
+  "TRY",
+  "UP006",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ty]
+
+[tool.ty.environment]
+python = ".venv"
+
+[tool.ty.rules]
+deprecated = "warn"
+
+[tool.ty.src]
+exclude = ["docs/conf.py", "tests/"]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/litestar_oauth"]
