@@ -62,8 +62,8 @@ class OAuthConfig:
         bitbucket_client_secret: Bitbucket OAuth client secret
         bitbucket_scope: Bitbucket OAuth scopes (default: "account email")
 
-    Example:
-        ```python
+    Example::
+
         from litestar import Litestar
         from litestar_oauth.contrib.litestar import OAuthPlugin, OAuthConfig
 
@@ -81,7 +81,6 @@ class OAuthConfig:
                 )
             ],
         )
-        ```
     """
 
     # Core configuration
@@ -153,8 +152,8 @@ class OAuthConfig:
             A dictionary mapping provider names to their configuration dictionaries.
             Each configuration includes client_id, client_secret, and scope.
 
-        Example:
-            ```python
+        Example::
+
             config = OAuthConfig(
                 redirect_base_url="https://example.com",
                 github_client_id="id",
@@ -162,7 +161,6 @@ class OAuthConfig:
             )
             providers = config.get_configured_providers()
             # {"github": {"client_id": "id", "client_secret": "secret", "scope": "user:email"}}
-            ```
         """
         providers: dict[str, dict[str, str]] = {}
 

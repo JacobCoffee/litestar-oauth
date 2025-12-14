@@ -39,15 +39,15 @@ class GenericOAuthProvider(BaseOAuthProvider):
         avatar_url_field: Field name for avatar URL. Defaults to "picture".
         profile_url_field: Field name for profile URL. Defaults to "profile".
 
-    Example:
-        ```python
+    Example::
+
         # Keycloak provider
         provider = GenericOAuthProvider(
             client_id="my-client",
             client_secret="secret",
-            authorize_url="https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/auth",
-            token_url="https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/token",
-            user_info_url="https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/userinfo",
+            authorize_url="https://keycloak.example.com/realms/myrealm/protocol/openid-connect/auth",
+            token_url="https://keycloak.example.com/realms/myrealm/protocol/openid-connect/token",
+            user_info_url="https://keycloak.example.com/realms/myrealm/protocol/openid-connect/userinfo",
             provider_name="keycloak",
             scope=["openid", "email", "profile"],
         )
@@ -57,9 +57,8 @@ class GenericOAuthProvider(BaseOAuthProvider):
             client_id="my-client",
             client_secret="secret",
             provider_name="keycloak",
-            discovery_url="https://keycloak.example.com/auth/realms/myrealm/.well-known/openid-configuration",
+            discovery_url="https://keycloak.example.com/realms/myrealm/.well-known/openid-configuration",
         )
-        ```
     """
 
     def __init__(

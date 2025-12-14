@@ -5,17 +5,6 @@ Complete API documentation for litestar-oauth. This reference covers all public
 classes, functions, and types.
 
 
-Core Module
------------
-
-The main ``litestar_oauth`` module exposes the primary classes and types.
-
-.. automodule:: litestar_oauth
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
 Base Classes
 ------------
 
@@ -103,42 +92,18 @@ Litestar Integration
 
 Components for Litestar framework integration.
 
-Plugin
-~~~~~~
+.. note::
 
-.. automodule:: litestar_oauth.contrib.litestar.plugin
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   The Litestar integration requires the ``litestar`` extra to be installed:
+
+   .. code-block:: bash
+
+      uv add litestar-oauth[litestar]
 
 Configuration
 ~~~~~~~~~~~~~
 
 .. automodule:: litestar_oauth.contrib.litestar.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Dependencies
-~~~~~~~~~~~~
-
-.. automodule:: litestar_oauth.contrib.litestar.dependencies
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Controllers
-~~~~~~~~~~~
-
-.. automodule:: litestar_oauth.contrib.litestar.controllers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Guards
-~~~~~~
-
-.. automodule:: litestar_oauth.contrib.litestar.guards
    :members:
    :undoc-members:
    :show-inheritance:
@@ -149,7 +114,18 @@ Testing Utilities
 
 Mock implementations for testing OAuth flows.
 
-.. automodule:: litestar_oauth.testing
+Mocks
+~~~~~
+
+.. automodule:: litestar_oauth.testing.mocks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Fixtures
+~~~~~~~~
+
+.. automodule:: litestar_oauth.testing.fixtures
    :members:
    :undoc-members:
    :show-inheritance:
@@ -167,9 +143,9 @@ Common Classes
 
    * - Class
      - Description
-   * - :class:`~litestar_oauth.OAuthService`
+   * - :class:`~litestar_oauth.service.OAuthService`
      - Central service for managing OAuth providers and state
-   * - :class:`~litestar_oauth.OAuthStateManager`
+   * - :class:`~litestar_oauth.service.OAuthStateManager`
      - Manages CSRF state tokens for OAuth flows
    * - :class:`~litestar_oauth.base.BaseOAuthProvider`
      - Abstract base class for OAuth providers
@@ -243,7 +219,5 @@ Litestar Components
 
    * - Component
      - Description
-   * - :class:`~litestar_oauth.contrib.litestar.plugin.OAuthPlugin`
-     - Litestar plugin for OAuth integration
    * - :class:`~litestar_oauth.contrib.litestar.config.OAuthConfig`
      - Configuration dataclass for the plugin

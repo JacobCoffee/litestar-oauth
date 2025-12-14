@@ -96,7 +96,6 @@ typehints_use_rtype = True
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "litestar": ("https://docs.litestar.dev/latest/", None),
-    "httpx": ("https://www.python-httpx.org/", None),
 }
 
 # TODO extension
@@ -125,7 +124,19 @@ copybutton_prompt_is_regexp = True
 copybutton_remove_prompts = True
 
 # Suppress warnings for missing references in external packages
-suppress_warnings = ["myst.header"]
+# Note: Types module has both msgspec and dataclass implementations; only one is active at runtime
+# but Sphinx sees both in the source, causing duplicate object warnings
+suppress_warnings = [
+    "myst.header",
+    "autodoc.import_object",  # Suppress warnings when litestar contrib can't be imported
+    "ref.python",  # Suppress duplicate refs from msgspec/dataclass dual implementation
+    "autodoc",  # Suppress autodoc warnings for conditional implementations
+    "py.duplicate_object",  # Suppress duplicate object description warnings
+]
+
+# Filter duplicate warnings from the types module (msgspec vs dataclass dual implementation)
+import warnings
+warnings.filterwarnings("ignore", message="duplicate object description")
 
 # -- HTML output -------------------------------------------------------------
 html_theme = "shibuya"

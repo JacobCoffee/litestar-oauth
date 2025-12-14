@@ -289,8 +289,8 @@ class OAuthService:
         Returns:
             Configured OAuthService instance.
 
-        Example:
-            ```python
+        Example::
+
             from litestar_oauth.providers import GoogleProvider, GitHubProvider
 
             config = {
@@ -311,7 +311,6 @@ class OAuthService:
             }
 
             service = OAuthService.from_config(config, classes)
-            ```
         """
         providers: dict[str, OAuthProvider] = {}
 
