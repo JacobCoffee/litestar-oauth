@@ -77,6 +77,12 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l2"><a class="reference internal" href="providers/github.html">GitHub OAuth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="providers/google.html">Google OAuth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="providers/discord.html">Discord OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/microsoft.html">Microsoft/Azure AD OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/gitlab.html">GitLab OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/twitter.html">Twitter/X OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/facebook.html">Facebook OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/linkedin.html">LinkedIn OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers/bitbucket.html">Bitbucket OAuth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="providers/generic.html">Generic OAuth Provider</a></li>
 </ul>
 </li>
@@ -357,6 +363,30 @@ Litestar Plugin</div>
 <tr class="row-even"><td><p>Discord</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">DiscordOAuthProvider</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">identify</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Microsoft</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MicrosoftOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>GitLab</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GitLabOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">read_user</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Twitter/X</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TwitterOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">users.read</span></code>, <code class="docutils literal notranslate"><span class="pre">tweet.read</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Facebook</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FacebookOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">public_profile</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>LinkedIn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinkedInOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Bitbucket</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BitbucketOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">account</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Generic</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">GenericOAuthProvider</span></code></p></td>
