@@ -40,5 +40,9 @@ htmlcov/
 .claude-flow/
 .hive-mind/
 
+## Claude Code - include project instructions
+!.claude/
+!.claude/CLAUDE.md
+
 ## Project
 *.db
