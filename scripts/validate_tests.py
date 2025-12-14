@@ -189,8 +189,7 @@ def print_validation_results(results: dict[str, Any]) -> None:
         total_sync = sum(c["sync"] for c in results["test_counts"].values())
         total_async = sum(c["async"] for c in results["test_counts"].values())
 
-        print(f"\n  {'TOTAL':<40} Tests: {results['total_tests']:>3} "
-              f"(Sync: {total_sync:>3}, Async: {total_async:>3})")
+        print(f"\n  {'TOTAL':<40} Tests: {results['total_tests']:>3} (Sync: {total_sync:>3}, Async: {total_async:>3})")
 
     # Summary
     print("\n\n" + "=" * 80)
@@ -204,7 +203,7 @@ def print_validation_results(results: dict[str, Any]) -> None:
     print(f"Test Classes:      {results['total_classes']}")
     print(f"Missing Files:     {len(results['missing_files'])}")
 
-    if results['total_tests'] >= 200:
+    if results["total_tests"] >= 200:
         print("\n✓ Test count meets target (200+)")
     else:
         print(f"\n✗ Test count below target (need {200 - results['total_tests']} more)")

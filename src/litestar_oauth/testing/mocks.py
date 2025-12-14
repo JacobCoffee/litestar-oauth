@@ -163,7 +163,7 @@ class MockOAuthProvider:
             raise Exception(msg)
 
         # Import here to avoid circular dependency
-        from datetime import UTC, datetime
+        from datetime import datetime, timezone
 
         # Dynamically import OAuthToken to avoid circular imports
         # In real tests, this would be imported at module level
@@ -177,7 +177,7 @@ class MockOAuthProvider:
                 "access_token": self.access_token,
                 "token_type": "Bearer",
                 "expires_in": 3600,
-                "created_at": int(datetime.now(UTC).timestamp()),
+                "created_at": int(datetime.now(timezone.utc).timestamp()),
             },
         }
 

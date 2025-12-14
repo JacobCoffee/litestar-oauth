@@ -289,6 +289,13 @@ max-complexity = 12
   "TRY",
   "UP006",
 ]
+"scripts/**/*.*" = [
+  "T201",
+  "PLR1722",
+  "INP001",
+  "SIM102",
+  "BLE001",
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -302,7 +309,7 @@ python = ".venv"
 deprecated = "warn"
 
 [tool.ty.src]
-exclude = ["docs/conf.py", "tests/"]
+exclude = ["docs/conf.py", "tests/", "src/litestar_oauth/testing/", "src/litestar_oauth/contrib/"]
 
 [tool.uv]
 default-groups = ["dev"]
