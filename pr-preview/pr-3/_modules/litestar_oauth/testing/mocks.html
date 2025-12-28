@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="teal" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>litestar_oauth.testing.mocks - litestar-oauth</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=83cb36c2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=72a73842" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="litestar_oauth.testing.mocks"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>litestar-oauth</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul><li class="link">
+          <a href="https://litestar.dev/">
+            <span>Litestar</span></a>
+        </li><li class="link">
+          <a href="https://pypi.org/project/litestar-oauth/">
+            <span>PyPI</span></a>
+        </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Learn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting-started/quickstart.html">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../providers/index.html">OAuth Providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/github.html">GitHub OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/google.html">Google OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/discord.html">Discord OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/microsoft.html">Microsoft/Azure AD OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/gitlab.html">GitLab OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/twitter.html">Twitter/X OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/facebook.html">Facebook OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/linkedin.html">LinkedIn OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/bitbucket.html">Bitbucket OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../providers/generic.html">Generic OAuth Provider</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/JacobCoffee/litestar-oauth">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/litestar-919193495116337154">Discord</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">litestar-oauth</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">litestar_oauth.testing.mocks</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  
+  <article class="yue" role="main">
+          <h1>Source code for litestar_oauth.testing.mocks</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">&quot;&quot;&quot;Mock implementations for testing OAuth providers and services.</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="sd">This module provides configurable mock objects that can be used in tests to simulate</span>
+</span><span data-line="4"><span class="sd">OAuth provider behavior without making actual HTTP requests.</span>
+</span><span data-line="5"><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+</span><span data-line="10"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+</span><span data-line="11"><span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncMock</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+</span><span data-line="14">    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mapping</span>
+</span><span data-line="15">
+</span><span data-line="16">
+</span><span data-line="17"><span class="nd">@dataclass</span>
+</span><span data-line="18"><span class="k">class</span><span class="w"> </span><span class="nc">MockHTTPResponse</span><span class="p">:</span>
+</span><span data-line="19"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Mock HTTP response for testing OAuth provider HTTP interactions.</span>
+</span><span data-line="20">
+</span><span data-line="21"><span class="sd">    This class simulates httpx.Response objects with configurable status codes,</span>
+</span><span data-line="22"><span class="sd">    headers, and response bodies.</span>
+</span><span data-line="23">
+</span><span data-line="24"><span class="sd">    Args:</span>
+</span><span data-line="25"><span class="sd">        status_code: HTTP status code (default: 200)</span>
+</span><span data-line="26"><span class="sd">        headers: Response headers (default: empty dict)</span>
+</span><span data-line="27"><span class="sd">        json_data: JSON response body (default: empty dict)</span>
+</span><span data-line="28"><span class="sd">        text_data: Text response body (default: empty string)</span>
+</span><span data-line="29"><span class="sd">        content: Raw bytes response body (default: empty bytes)</span>
+</span><span data-line="30">
+</span><span data-line="31"><span class="sd">    Example:</span>
+</span><span data-line="32"><span class="sd">        &gt;&gt;&gt; response = MockHTTPResponse(status_code=200, json_data={&quot;access_token&quot;: &quot;mock_token&quot;})</span>
+</span><span data-line="33"><span class="sd">        &gt;&gt;&gt; assert response.json() == {&quot;access_token&quot;: &quot;mock_token&quot;}</span>
+</span><span data-line="34"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="35">
+</span><span data-line="36">    <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span data-line="37">    <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+</span><span data-line="38">    <span class="n">json_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+</span><span data-line="39">    <span class="n">text_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span data-line="40">    <span class="n">content</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+</span><span data-line="41">
+</span><span data-line="42">    <span class="k">def</span><span class="w"> </span><span class="nf">json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span data-line="43"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return JSON response data.&quot;&quot;&quot;</span>
+</span><span data-line="44">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_data</span>
+</span><span data-line="45">
+</span><span data-line="46">    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="47"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return text response data.&quot;&quot;&quot;</span>
+</span><span data-line="48">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_data</span>
+</span><span data-line="49">
+</span><span data-line="50">    <span class="k">def</span><span class="w"> </span><span class="nf">raise_for_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="51"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Raise exception if status code indicates error.&quot;&quot;&quot;</span>
+</span><span data-line="52">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="p">:</span>
+</span><span data-line="53">            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;HTTP </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span data-line="54">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="55">
+</span><span data-line="56">
+<div class="viewcode-block" id="MockOAuthProvider">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider">[docs]</a>
+</span><span data-line="57"><span class="nd">@dataclass</span>
+</span><span data-line="58"><span class="k">class</span><span class="w"> </span><span class="nc">MockOAuthProvider</span><span class="p">:</span>
+</span><span data-line="59"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Configurable mock OAuth provider for testing.</span>
+</span><span data-line="60">
+</span><span data-line="61"><span class="sd">    This mock implements the OAuthProvider protocol and can be configured to return</span>
+</span><span data-line="62"><span class="sd">    specific responses for testing different OAuth flow scenarios.</span>
+</span><span data-line="63">
+</span><span data-line="64"><span class="sd">    Args:</span>
+</span><span data-line="65"><span class="sd">        provider_name: Provider identifier (default: &quot;mock&quot;)</span>
+</span><span data-line="66"><span class="sd">        authorize_url: Authorization endpoint URL</span>
+</span><span data-line="67"><span class="sd">        token_url: Token exchange endpoint URL</span>
+</span><span data-line="68"><span class="sd">        user_info_url: User info endpoint URL</span>
+</span><span data-line="69"><span class="sd">        scope: OAuth scopes to request</span>
+</span><span data-line="70"><span class="sd">        configured: Whether provider has valid configuration</span>
+</span><span data-line="71"><span class="sd">        access_token: Mock access token to return</span>
+</span><span data-line="72"><span class="sd">        refresh_token: Mock refresh token to return</span>
+</span><span data-line="73"><span class="sd">        user_info: Mock user info to return</span>
+</span><span data-line="74"><span class="sd">        raise_on_exchange: If True, raise exception during code exchange</span>
+</span><span data-line="75"><span class="sd">        raise_on_refresh: If True, raise exception during token refresh</span>
+</span><span data-line="76"><span class="sd">        raise_on_user_info: If True, raise exception when fetching user info</span>
+</span><span data-line="77">
+</span><span data-line="78"><span class="sd">    Example:</span>
+</span><span data-line="79"><span class="sd">        &gt;&gt;&gt; from litestar_oauth.types import OAuthUserInfo</span>
+</span><span data-line="80"><span class="sd">        &gt;&gt;&gt; provider = MockOAuthProvider(</span>
+</span><span data-line="81"><span class="sd">        ...     provider_name=&quot;github&quot;,</span>
+</span><span data-line="82"><span class="sd">        ...     access_token=&quot;gho_mock_token&quot;,</span>
+</span><span data-line="83"><span class="sd">        ...     user_info=OAuthUserInfo(</span>
+</span><span data-line="84"><span class="sd">        ...         provider=&quot;github&quot;,</span>
+</span><span data-line="85"><span class="sd">        ...         oauth_id=&quot;12345&quot;,</span>
+</span><span data-line="86"><span class="sd">        ...         email=&quot;test@example.com&quot;,</span>
+</span><span data-line="87"><span class="sd">        ...     ),</span>
+</span><span data-line="88"><span class="sd">        ... )</span>
+</span><span data-line="89"><span class="sd">        &gt;&gt;&gt; url = provider.get_authorization_url(&quot;http://localhost/callback&quot;, &quot;state123&quot;)</span>
+</span><span data-line="90"><span class="sd">        &gt;&gt;&gt; assert &quot;state=state123&quot; in url</span>
+</span><span data-line="91"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="92">
+</span><span data-line="93">    <span class="n">provider_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;mock&quot;</span>
+</span><span data-line="94">    <span class="n">authorize_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://oauth.mock/authorize&quot;</span>
+</span><span data-line="95">    <span class="n">token_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://oauth.mock/token&quot;</span>
+</span><span data-line="96">    <span class="n">user_info_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://oauth.mock/userinfo&quot;</span>
+</span><span data-line="97">    <span class="n">scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;user:email&quot;</span>
+</span><span data-line="98">    <span class="n">configured</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span data-line="99">    <span class="n">access_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;mock_access_token&quot;</span>
+</span><span data-line="100">    <span class="n">mock_refresh_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;mock_refresh_token&quot;</span>
+</span><span data-line="101">    <span class="n">user_info</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Should be OAuthUserInfo but avoiding import</span>
+</span><span data-line="102">    <span class="n">raise_on_exchange</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span data-line="103">    <span class="n">raise_on_refresh</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span data-line="104">    <span class="n">raise_on_user_info</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span data-line="105">    <span class="n">_http_client</span><span class="p">:</span> <span class="n">AsyncMock</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="106">
+<div class="viewcode-block" id="MockOAuthProvider.is_configured">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.is_configured">[docs]</a>
+</span><span data-line="107">    <span class="k">def</span><span class="w"> </span><span class="nf">is_configured</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span data-line="108"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if provider is configured with required credentials.&quot;&quot;&quot;</span>
+</span><span data-line="109">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">configured</span></div>
+
+</span><span data-line="110">
+<div class="viewcode-block" id="MockOAuthProvider.get_authorization_url">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.get_authorization_url">[docs]</a>
+</span><span data-line="111">    <span class="k">def</span><span class="w"> </span><span class="nf">get_authorization_url</span><span class="p">(</span>
+</span><span data-line="112">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="113">        <span class="n">redirect_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="114">        <span class="n">state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="115">        <span class="o">*</span><span class="p">,</span>
+</span><span data-line="116">        <span class="n">scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="117">        <span class="n">extra_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="118">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="119"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate OAuth authorization URL.</span>
+</span><span data-line="120">
+</span><span data-line="121"><span class="sd">        Args:</span>
+</span><span data-line="122"><span class="sd">            redirect_uri: Callback URL after authorization</span>
+</span><span data-line="123"><span class="sd">            state: CSRF protection token</span>
+</span><span data-line="124"><span class="sd">            scope: Optional custom scopes (defaults to provider scope)</span>
+</span><span data-line="125"><span class="sd">            extra_params: Additional query parameters</span>
+</span><span data-line="126">
+</span><span data-line="127"><span class="sd">        Returns:</span>
+</span><span data-line="128"><span class="sd">            Full authorization URL with query parameters</span>
+</span><span data-line="129"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="130">        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="131">            <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;mock_client_id&quot;</span><span class="p">,</span>
+</span><span data-line="132">            <span class="s2">&quot;redirect_uri&quot;</span><span class="p">:</span> <span class="n">redirect_uri</span><span class="p">,</span>
+</span><span data-line="133">            <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
+</span><span data-line="134">            <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="n">scope</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">,</span>
+</span><span data-line="135">            <span class="s2">&quot;response_type&quot;</span><span class="p">:</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span>
+</span><span data-line="136">        <span class="p">}</span>
+</span><span data-line="137">
+</span><span data-line="138">        <span class="k">if</span> <span class="n">extra_params</span><span class="p">:</span>
+</span><span data-line="139">            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_params</span><span class="p">)</span>
+</span><span data-line="140">
+</span><span data-line="141">        <span class="n">query_string</span> <span class="o">=</span> <span class="s2">&quot;&amp;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</span><span data-line="142">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">authorize_url</span><span class="si">}</span><span class="s2">?</span><span class="si">{</span><span class="n">query_string</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+</span><span data-line="143">
+<div class="viewcode-block" id="MockOAuthProvider.exchange_code">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.exchange_code">[docs]</a>
+</span><span data-line="144">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">exchange_code</span><span class="p">(</span>
+</span><span data-line="145">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="146">        <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="147">        <span class="n">redirect_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="148">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># Should return OAuthToken</span>
+</span><span data-line="149"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Exchange authorization code for access token.</span>
+</span><span data-line="150">
+</span><span data-line="151"><span class="sd">        Args:</span>
+</span><span data-line="152"><span class="sd">            code: Authorization code from OAuth callback</span>
+</span><span data-line="153"><span class="sd">            redirect_uri: Callback URL (must match initial request)</span>
+</span><span data-line="154">
+</span><span data-line="155"><span class="sd">        Returns:</span>
+</span><span data-line="156"><span class="sd">            OAuthToken with access token and optional refresh token</span>
+</span><span data-line="157">
+</span><span data-line="158"><span class="sd">        Raises:</span>
+</span><span data-line="159"><span class="sd">            Exception: If raise_on_exchange is True</span>
+</span><span data-line="160"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="161">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_on_exchange</span><span class="p">:</span>
+</span><span data-line="162">            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Mock token exchange failure&quot;</span>
+</span><span data-line="163">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="164">
+</span><span data-line="165">        <span class="c1"># Import here to avoid circular dependency</span>
+</span><span data-line="166">        <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+</span><span data-line="167">
+</span><span data-line="168">        <span class="c1"># Dynamically import OAuthToken to avoid circular imports</span>
+</span><span data-line="169">        <span class="c1"># In real tests, this would be imported at module level</span>
+</span><span data-line="170">        <span class="n">token_data</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="171">            <span class="s2">&quot;access_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">,</span>
+</span><span data-line="172">            <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
+</span><span data-line="173">            <span class="s2">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+</span><span data-line="174">            <span class="s2">&quot;refresh_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_refresh_token</span><span class="p">,</span>
+</span><span data-line="175">            <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">,</span>
+</span><span data-line="176">            <span class="s2">&quot;raw_response&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="177">                <span class="s2">&quot;access_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">,</span>
+</span><span data-line="178">                <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
+</span><span data-line="179">                <span class="s2">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+</span><span data-line="180">                <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()),</span>
+</span><span data-line="181">            <span class="p">},</span>
+</span><span data-line="182">        <span class="p">}</span>
+</span><span data-line="183">
+</span><span data-line="184">        <span class="c1"># Create a simple object with the expected attributes</span>
+</span><span data-line="185">        <span class="k">class</span><span class="w"> </span><span class="nc">MockToken</span><span class="p">:</span>
+</span><span data-line="186">            <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="187">                <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+</span><span data-line="188">                <span class="bp">self</span><span class="o">.</span><span class="n">token_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token_type&quot;</span><span class="p">]</span>
+</span><span data-line="189">                <span class="bp">self</span><span class="o">.</span><span class="n">expires_in</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;expires_in&quot;</span><span class="p">]</span>
+</span><span data-line="190">                <span class="bp">self</span><span class="o">.</span><span class="n">refresh_token</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;refresh_token&quot;</span><span class="p">)</span>
+</span><span data-line="191">                <span class="bp">self</span><span class="o">.</span><span class="n">scope</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;scope&quot;</span><span class="p">)</span>
+</span><span data-line="192">                <span class="bp">self</span><span class="o">.</span><span class="n">id_token</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id_token&quot;</span><span class="p">)</span>
+</span><span data-line="193">                <span class="bp">self</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;raw_response&quot;</span><span class="p">,</span> <span class="p">{})</span>
+</span><span data-line="194">
+</span><span data-line="195">        <span class="k">return</span> <span class="n">MockToken</span><span class="p">(</span><span class="n">token_data</span><span class="p">)</span></div>
+
+</span><span data-line="196">
+<div class="viewcode-block" id="MockOAuthProvider.refresh_token">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.refresh_token">[docs]</a>
+</span><span data-line="197">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">refresh_token</span><span class="p">(</span>
+</span><span data-line="198">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="199">        <span class="n">refresh_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="200">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># Should return OAuthToken</span>
+</span><span data-line="201"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Refresh an expired access token.</span>
+</span><span data-line="202">
+</span><span data-line="203"><span class="sd">        Args:</span>
+</span><span data-line="204"><span class="sd">            refresh_token: Refresh token from original token exchange</span>
+</span><span data-line="205">
+</span><span data-line="206"><span class="sd">        Returns:</span>
+</span><span data-line="207"><span class="sd">            OAuthToken with new access token</span>
+</span><span data-line="208">
+</span><span data-line="209"><span class="sd">        Raises:</span>
+</span><span data-line="210"><span class="sd">            Exception: If raise_on_refresh is True</span>
+</span><span data-line="211"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="212">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_on_refresh</span><span class="p">:</span>
+</span><span data-line="213">            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Mock token refresh failure&quot;</span>
+</span><span data-line="214">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="215">
+</span><span data-line="216">        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange_code</span><span class="p">(</span><span class="s2">&quot;refresh_code&quot;</span><span class="p">,</span> <span class="s2">&quot;http://mock/callback&quot;</span><span class="p">)</span></div>
+
+</span><span data-line="217">
+<div class="viewcode-block" id="MockOAuthProvider.get_user_info">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.get_user_info">[docs]</a>
+</span><span data-line="218">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user_info</span><span class="p">(</span>
+</span><span data-line="219">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="220">        <span class="n">access_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="221">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># Should return OAuthUserInfo</span>
+</span><span data-line="222"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch user profile information.</span>
+</span><span data-line="223">
+</span><span data-line="224"><span class="sd">        Args:</span>
+</span><span data-line="225"><span class="sd">            access_token: Valid OAuth access token</span>
+</span><span data-line="226">
+</span><span data-line="227"><span class="sd">        Returns:</span>
+</span><span data-line="228"><span class="sd">            OAuthUserInfo with user profile data</span>
+</span><span data-line="229">
+</span><span data-line="230"><span class="sd">        Raises:</span>
+</span><span data-line="231"><span class="sd">            Exception: If raise_on_user_info is True</span>
+</span><span data-line="232"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="233">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_on_user_info</span><span class="p">:</span>
+</span><span data-line="234">            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Mock user info fetch failure&quot;</span>
+</span><span data-line="235">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="236">
+</span><span data-line="237">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">:</span>
+</span><span data-line="238">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span>
+</span><span data-line="239">
+</span><span data-line="240">        <span class="c1"># Return default mock user info</span>
+</span><span data-line="241">        <span class="k">class</span><span class="w"> </span><span class="nc">MockUserInfo</span><span class="p">:</span>
+</span><span data-line="242">            <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="243">                <span class="bp">self</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="s2">&quot;mock&quot;</span>
+</span><span data-line="244">                <span class="bp">self</span><span class="o">.</span><span class="n">oauth_id</span> <span class="o">=</span> <span class="s2">&quot;mock_user_123&quot;</span>
+</span><span data-line="245">                <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;mock@example.com&quot;</span>
+</span><span data-line="246">                <span class="bp">self</span><span class="o">.</span><span class="n">email_verified</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span data-line="247">                <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;mockuser&quot;</span>
+</span><span data-line="248">                <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Mock&quot;</span>
+</span><span data-line="249">                <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s2">&quot;User&quot;</span>
+</span><span data-line="250">                <span class="bp">self</span><span class="o">.</span><span class="n">avatar_url</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/avatar.jpg&quot;</span>
+</span><span data-line="251">                <span class="bp">self</span><span class="o">.</span><span class="n">profile_url</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/mockuser&quot;</span>
+</span><span data-line="252">                <span class="bp">self</span><span class="o">.</span><span class="n">raw_data</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="253">
+</span><span data-line="254">        <span class="k">return</span> <span class="n">MockUserInfo</span><span class="p">()</span></div>
+
+</span><span data-line="255">
+<div class="viewcode-block" id="MockOAuthProvider.revoke_token">
+<a class="viewcode-back" href="../../../api/index.html#litestar_oauth.testing.mocks.MockOAuthProvider.revoke_token">[docs]</a>
+</span><span data-line="256">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">revoke_token</span><span class="p">(</span>
+</span><span data-line="257">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="258">        <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="259">        <span class="o">*</span><span class="p">,</span>
+</span><span data-line="260">        <span class="n">token_type_hint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;access_token&quot;</span><span class="p">,</span>
+</span><span data-line="261">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="262"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Revoke an access or refresh token.</span>
+</span><span data-line="263">
+</span><span data-line="264"><span class="sd">        Args:</span>
+</span><span data-line="265"><span class="sd">            token: Token to revoke</span>
+</span><span data-line="266"><span class="sd">            token_type_hint: Type of token (access_token or refresh_token)</span>
+</span><span data-line="267"><span class="sd">        &quot;&quot;&quot;</span></div>
+</div>
+
+</span><span data-line="268">        <span class="c1"># Mock implementation does nothing</span>
+</span><span data-line="269">
+</span><span data-line="270">
+</span><span data-line="271"><span class="k">class</span><span class="w"> </span><span class="nc">MockOAuthService</span><span class="p">:</span>
+</span><span data-line="272"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pre-configured mock OAuth service for testing.</span>
+</span><span data-line="273">
+</span><span data-line="274"><span class="sd">    This class provides a complete mock OAuth service with state management</span>
+</span><span data-line="275"><span class="sd">    and provider registration capabilities for integration testing.</span>
+</span><span data-line="276">
+</span><span data-line="277"><span class="sd">    Args:</span>
+</span><span data-line="278"><span class="sd">        providers: Optional mapping of provider names to MockOAuthProvider instances</span>
+</span><span data-line="279">
+</span><span data-line="280"><span class="sd">    Example:</span>
+</span><span data-line="281"><span class="sd">        &gt;&gt;&gt; from litestar_oauth.testing.mocks import MockOAuthService</span>
+</span><span data-line="282"><span class="sd">        &gt;&gt;&gt; service = MockOAuthService()</span>
+</span><span data-line="283"><span class="sd">        &gt;&gt;&gt; await service.register_mock_provider(&quot;github&quot;)</span>
+</span><span data-line="284"><span class="sd">        &gt;&gt;&gt; state = await service.create_state(&quot;github&quot;, &quot;http://localhost/callback&quot;)</span>
+</span><span data-line="285"><span class="sd">        &gt;&gt;&gt; assert state is not None</span>
+</span><span data-line="286"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="287">
+</span><span data-line="288">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+</span><span data-line="289">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="290">        <span class="n">providers</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MockOAuthProvider</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="291">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="292"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize mock OAuth service.&quot;&quot;&quot;</span>
+</span><span data-line="293">        <span class="bp">self</span><span class="o">.</span><span class="n">_providers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MockOAuthProvider</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">providers</span><span class="p">)</span> <span class="k">if</span> <span class="n">providers</span> <span class="k">else</span> <span class="p">{}</span>
+</span><span data-line="294">        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="295">
+</span><span data-line="296">    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">:</span> <span class="n">MockOAuthProvider</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="297"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a mock OAuth provider.</span>
+</span><span data-line="298">
+</span><span data-line="299"><span class="sd">        Args:</span>
+</span><span data-line="300"><span class="sd">            provider: MockOAuthProvider instance to register</span>
+</span><span data-line="301"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="302">        <span class="bp">self</span><span class="o">.</span><span class="n">_providers</span><span class="p">[</span><span class="n">provider</span><span class="o">.</span><span class="n">provider_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">provider</span>
+</span><span data-line="303">
+</span><span data-line="304">    <span class="k">def</span><span class="w"> </span><span class="nf">get_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MockOAuthProvider</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="305"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a registered provider by name.</span>
+</span><span data-line="306">
+</span><span data-line="307"><span class="sd">        Args:</span>
+</span><span data-line="308"><span class="sd">            provider_name: Name of the provider to retrieve</span>
+</span><span data-line="309">
+</span><span data-line="310"><span class="sd">        Returns:</span>
+</span><span data-line="311"><span class="sd">            MockOAuthProvider instance or None if not found</span>
+</span><span data-line="312"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="313">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_providers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">provider_name</span><span class="p">)</span>
+</span><span data-line="314">
+</span><span data-line="315">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_state</span><span class="p">(</span>
+</span><span data-line="316">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="317">        <span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="318">        <span class="n">redirect_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="319">        <span class="o">*</span><span class="p">,</span>
+</span><span data-line="320">        <span class="n">next_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="321">        <span class="n">ttl</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+</span><span data-line="322">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="323"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new OAuth state token.</span>
+</span><span data-line="324">
+</span><span data-line="325"><span class="sd">        Args:</span>
+</span><span data-line="326"><span class="sd">            provider: Provider name for this state</span>
+</span><span data-line="327"><span class="sd">            redirect_uri: Callback URL</span>
+</span><span data-line="328"><span class="sd">            next_url: Optional URL to redirect to after OAuth flow</span>
+</span><span data-line="329"><span class="sd">            ttl: Time-to-live in seconds (ignored in mock)</span>
+</span><span data-line="330">
+</span><span data-line="331"><span class="sd">        Returns:</span>
+</span><span data-line="332"><span class="sd">            State token string</span>
+</span><span data-line="333"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="334">        <span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
+</span><span data-line="335">
+</span><span data-line="336">        <span class="n">state</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_urlsafe</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span><span data-line="337">        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="338">            <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span>
+</span><span data-line="339">            <span class="s2">&quot;redirect_uri&quot;</span><span class="p">:</span> <span class="n">redirect_uri</span><span class="p">,</span>
+</span><span data-line="340">            <span class="s2">&quot;next_url&quot;</span><span class="p">:</span> <span class="n">next_url</span><span class="p">,</span>
+</span><span data-line="341">            <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-01-01T00:00:00Z&quot;</span><span class="p">,</span>
+</span><span data-line="342">        <span class="p">}</span>
+</span><span data-line="343">        <span class="k">return</span> <span class="n">state</span>
+</span><span data-line="344">
+</span><span data-line="345">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">validate_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="346"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate and consume a state token.</span>
+</span><span data-line="347">
+</span><span data-line="348"><span class="sd">        Args:</span>
+</span><span data-line="349"><span class="sd">            state: State token to validate</span>
+</span><span data-line="350">
+</span><span data-line="351"><span class="sd">        Returns:</span>
+</span><span data-line="352"><span class="sd">            State data dict or None if invalid</span>
+</span><span data-line="353"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="354">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span data-line="355">
+</span><span data-line="356">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">exchange_code</span><span class="p">(</span>
+</span><span data-line="357">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="358">        <span class="n">provider_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="359">        <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="360">        <span class="n">redirect_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="361">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># Should return OAuthToken</span>
+</span><span data-line="362"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Exchange authorization code for access token.</span>
+</span><span data-line="363">
+</span><span data-line="364"><span class="sd">        Args:</span>
+</span><span data-line="365"><span class="sd">            provider_name: Name of the OAuth provider</span>
+</span><span data-line="366"><span class="sd">            code: Authorization code from callback</span>
+</span><span data-line="367"><span class="sd">            redirect_uri: Callback URL (must match initial request)</span>
+</span><span data-line="368">
+</span><span data-line="369"><span class="sd">        Returns:</span>
+</span><span data-line="370"><span class="sd">            OAuthToken from provider</span>
+</span><span data-line="371">
+</span><span data-line="372"><span class="sd">        Raises:</span>
+</span><span data-line="373"><span class="sd">            ValueError: If provider not found</span>
+</span><span data-line="374"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="375">        <span class="n">provider</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_provider</span><span class="p">(</span><span class="n">provider_name</span><span class="p">)</span>
+</span><span data-line="376">        <span class="k">if</span> <span class="ow">not</span> <span class="n">provider</span><span class="p">:</span>
+</span><span data-line="377">            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Provider </span><span class="si">{</span><span class="n">provider_name</span><span class="si">}</span><span class="s2"> not registered&quot;</span>
+</span><span data-line="378">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="379">
+</span><span data-line="380">        <span class="k">return</span> <span class="k">await</span> <span class="n">provider</span><span class="o">.</span><span class="n">exchange_code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="p">)</span>
+</span><span data-line="381">
+</span><span data-line="382">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user_info</span><span class="p">(</span>
+</span><span data-line="383">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="384">        <span class="n">provider_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="385">        <span class="n">access_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="386">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># Should return OAuthUserInfo</span>
+</span><span data-line="387"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch user information from provider.</span>
+</span><span data-line="388">
+</span><span data-line="389"><span class="sd">        Args:</span>
+</span><span data-line="390"><span class="sd">            provider_name: Name of the OAuth provider</span>
+</span><span data-line="391"><span class="sd">            access_token: Valid access token</span>
+</span><span data-line="392">
+</span><span data-line="393"><span class="sd">        Returns:</span>
+</span><span data-line="394"><span class="sd">            OAuthUserInfo from provider</span>
+</span><span data-line="395">
+</span><span data-line="396"><span class="sd">        Raises:</span>
+</span><span data-line="397"><span class="sd">            ValueError: If provider not found</span>
+</span><span data-line="398"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="399">        <span class="n">provider</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_provider</span><span class="p">(</span><span class="n">provider_name</span><span class="p">)</span>
+</span><span data-line="400">        <span class="k">if</span> <span class="ow">not</span> <span class="n">provider</span><span class="p">:</span>
+</span><span data-line="401">            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Provider </span><span class="si">{</span><span class="n">provider_name</span><span class="si">}</span><span class="s2"> not registered&quot;</span>
+</span><span data-line="402">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span data-line="403">
+</span><span data-line="404">        <span class="k">return</span> <span class="k">await</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_user_info</span><span class="p">(</span><span class="n">access_token</span><span class="p">)</span>
+</span><span data-line="405">
+</span><span data-line="406">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_mock_provider</span><span class="p">(</span>
+</span><span data-line="407">        <span class="bp">self</span><span class="p">,</span>
+</span><span data-line="408">        <span class="n">provider_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="409">        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+</span><span data-line="410">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MockOAuthProvider</span><span class="p">:</span>
+</span><span data-line="411"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Convenience method to create and register a mock provider.</span>
+</span><span data-line="412">
+</span><span data-line="413"><span class="sd">        Args:</span>
+</span><span data-line="414"><span class="sd">            provider_name: Name for the provider</span>
+</span><span data-line="415"><span class="sd">            **kwargs: Additional arguments for MockOAuthProvider</span>
+</span><span data-line="416">
+</span><span data-line="417"><span class="sd">        Returns:</span>
+</span><span data-line="418"><span class="sd">            Created and registered MockOAuthProvider instance</span>
+</span><span data-line="419"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span data-line="420">        <span class="n">provider</span> <span class="o">=</span> <span class="n">MockOAuthProvider</span><span class="p">(</span><span class="n">provider_name</span><span class="o">=</span><span class="n">provider_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span data-line="421">        <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</span><span data-line="422">        <span class="k">return</span> <span class="n">provider</span>
+</span><span data-line="423">
+</span><span data-line="424">
+</span><span data-line="425"><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="426">    <span class="s2">&quot;MockHTTPResponse&quot;</span><span class="p">,</span>
+</span><span data-line="427">    <span class="s2">&quot;MockOAuthProvider&quot;</span><span class="p">,</span>
+</span><span data-line="428">    <span class="s2">&quot;MockOAuthService&quot;</span><span class="p">,</span>
+</span><span data-line="429"><span class="p">]</span>
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Jacob Coffee</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=cac61aee"></script></body>
+</html>
