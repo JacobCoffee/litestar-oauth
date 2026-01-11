@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="teal" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>OAuth Providers - litestar-oauth</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="GitHub OAuth" href="github.html" /><link rel="prev" title="Quickstart" href="../getting-started/quickstart.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=83cb36c2" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=72a73842" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="OAuth Providers"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>litestar-oauth</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"><ul><li class="link">
+          <a href="https://litestar.dev/">
+            <span>Litestar</span></a>
+        </li><li class="link">
+          <a href="https://pypi.org/project/litestar-oauth/">
+            <span>PyPI</span></a>
+        </li></ul></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Learn</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/quickstart.html">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OAuth Providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="github.html">GitHub OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="google.html">Google OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discord.html">Discord OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microsoft.html">Microsoft/Azure AD OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twitter.html">Twitter/X OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facebook.html">Facebook OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkedin.html">LinkedIn OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bitbucket.html">Bitbucket OAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html">Generic OAuth Provider</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/JacobCoffee/litestar-oauth">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://discord.gg/litestar-919193495116337154">Discord</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#available-providers">Available Providers</a></li>
+<li><a class="reference internal" href="#provider-configuration">Provider Configuration</a><ul>
+<li><a class="reference internal" href="#with-litestar-plugin">With Litestar Plugin</a></li>
+<li><a class="reference internal" href="#standalone-usage">Standalone Usage</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#user-info-mapping">User Info Mapping</a><ul>
+<li><a class="reference internal" href="#provider-specific-mappings">Provider-Specific Mappings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-scopes">Custom Scopes</a></li>
+<li><a class="reference internal" href="#generic-provider">Generic Provider</a></li>
+<li><a class="reference internal" href="#creating-custom-providers">Creating Custom Providers</a></li>
+<li><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">litestar-oauth</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">OAuth Providers</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  
+
+
+<div class="copy-page-wrapper relative pb-4 lg:absolute lg:top-8 lg:right-6 xl:right-12">
+  <div id="copy-page-trigger">
+    <button
+      type="button"
+      class="js-copy px-3 py-1 inline-flex items-center gap-1"
+      data-url="../_sources/providers/index.rst.txt"
+    >
+      <i class="i-lucide" data-icon="copy"></i>
+      <span>Copy page</span>
+    </button>
+    <button class="js-menu px-2 py-1" type="button" aria-label="More actions"
+      aria-haspopup="menu" aria-expanded="false" aria-controls="copy-page-content">
+      <i class="i-lucide chevron-down"></i>
+    </button>
+  </div>
+  <div id="copy-page-content" role="menu" aria-orientation="vertical" aria-hidden="true">
+    <div role="presentation">
+      <div class="flex flex-col" role="group">
+        <button class="js-copy" type="button" role="menuitem"
+          data-url="../_sources/providers/index.rst.txt">
+          <span class="iconify-icon">
+            <i class="i-lucide" data-icon="copy"></i>
+          </span>
+          <span>Copy page</span>
+        </button>
+        <a role="menuitem" href="../_sources/providers/index.rst.txt" target="_blank" rel="nofollow">
+          
+            <iconify-icon icon="bi:code-slash"></iconify-icon>
+            <span>View Source</span>
+          
+        </a>
+        
+        <a role="menuitem" href="https://chatgpt.com/?hints=search&q=Read%20../_sources/providers/index.rst.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:openai"></iconify-icon>
+          <span>Open in ChatGPT</span>
+        </a>
+        
+        
+        <a role="menuitem" href="https://claude.ai/new?q=Read%20../_sources/providers/index.rst.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:claude"></iconify-icon>
+          <span>Open in Claude</span>
+        </a>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+<article class="yue" role="main">
+          <section id="oauth-providers">
+<h1>OAuth Providers<a class="headerlink" href="#oauth-providers" title="Link to this heading">¶</a></h1>
+<p>litestar-oauth includes pre-built support for popular OAuth2 providers, plus a generic
+provider class for any OAuth2/OIDC-compliant identity provider.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="google.html">Google OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discord.html">Discord OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microsoft.html">Microsoft/Azure AD OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gitlab.html">GitLab OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twitter.html">Twitter/X OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linkedin.html">LinkedIn OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitbucket.html">Bitbucket OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic.html">Generic OAuth Provider</a></li>
+</ul>
+</div>
+<section id="available-providers">
+<h2>Available Providers<a class="headerlink" href="#available-providers" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Provider</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p>Default Scopes</p></th>
+<th class="head"><p>Features</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GitHub</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GitHubOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">read:user</span></code>, <code class="docutils literal notranslate"><span class="pre">user:email</span></code></p></td>
+<td><p>User profile, emails, avatar</p></td>
+</tr>
+<tr class="row-odd"><td><p>Google</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GoogleOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+<td><p>OpenID Connect, email verified status</p></td>
+</tr>
+<tr class="row-even"><td><p>Discord</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DiscordOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">identify</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>User profile, avatar (CDN URL)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Microsoft</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MicrosoftOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+<td><p>Azure AD, multi-tenant support</p></td>
+</tr>
+<tr class="row-even"><td><p>GitLab</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GitLabOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">read_user</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>Self-hosted instance support</p></td>
+</tr>
+<tr class="row-odd"><td><p>Twitter/X</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TwitterOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">users.read</span></code>, <code class="docutils literal notranslate"><span class="pre">tweet.read</span></code></p></td>
+<td><p>PKCE support required</p></td>
+</tr>
+<tr class="row-even"><td><p>Facebook</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FacebookOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">public_profile</span></code></p></td>
+<td><p>User profile, avatar</p></td>
+</tr>
+<tr class="row-odd"><td><p>LinkedIn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinkedInOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+<td><p>OpenID Connect support</p></td>
+</tr>
+<tr class="row-even"><td><p>Bitbucket</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BitbucketOAuthProvider</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">account</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>User profile, email</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generic</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GenericOAuthProvider</span></code></p></td>
+<td><p>Configurable</p></td>
+<td><p>Any OAuth2/OIDC provider</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="provider-configuration">
+<h2>Provider Configuration<a class="headerlink" href="#provider-configuration" title="Link to this heading">¶</a></h2>
+<p>All providers require at minimum a <code class="docutils literal notranslate"><span class="pre">client_id</span></code> and <code class="docutils literal notranslate"><span class="pre">client_secret</span></code>, which you obtain
+by registering your application with the OAuth provider.</p>
+<section id="with-litestar-plugin">
+<h3>With Litestar Plugin<a class="headerlink" href="#with-litestar-plugin" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.contrib.litestar</span><span class="w"> </span><span class="kn">import</span> <span class="n">OAuthConfig</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">config</span> <span class="o">=</span> <span class="n">OAuthConfig</span><span class="p">(</span>
+</span><span data-line="4">    <span class="n">redirect_base_url</span><span class="o">=</span><span class="s2">&quot;https://example.com&quot;</span><span class="p">,</span>
+</span><span data-line="5">
+</span><span data-line="6">    <span class="c1"># GitHub</span>
+</span><span data-line="7">    <span class="n">github_client_id</span><span class="o">=</span><span class="s2">&quot;your-github-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="8">    <span class="n">github_client_secret</span><span class="o">=</span><span class="s2">&quot;your-github-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="9">
+</span><span data-line="10">    <span class="c1"># Google</span>
+</span><span data-line="11">    <span class="n">google_client_id</span><span class="o">=</span><span class="s2">&quot;your-google-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="12">    <span class="n">google_client_secret</span><span class="o">=</span><span class="s2">&quot;your-google-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="13">
+</span><span data-line="14">    <span class="c1"># Discord</span>
+</span><span data-line="15">    <span class="n">discord_client_id</span><span class="o">=</span><span class="s2">&quot;your-discord-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="16">    <span class="n">discord_client_secret</span><span class="o">=</span><span class="s2">&quot;your-discord-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="17">
+</span><span data-line="18">    <span class="c1"># Only enable specific providers (optional)</span>
+</span><span data-line="19">    <span class="n">enabled_providers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;github&quot;</span><span class="p">,</span> <span class="s2">&quot;google&quot;</span><span class="p">],</span>
+</span><span data-line="20"><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="standalone-usage">
+<h3>Standalone Usage<a class="headerlink" href="#standalone-usage" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.providers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span data-line="2">    <span class="n">GitHubOAuthProvider</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">GoogleOAuthProvider</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">DiscordOAuthProvider</span><span class="p">,</span>
+</span><span data-line="5"><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="n">github</span> <span class="o">=</span> <span class="n">GitHubOAuthProvider</span><span class="p">(</span>
+</span><span data-line="8">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;your-github-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="9">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;your-github-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="10">    <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;read:user&quot;</span><span class="p">,</span> <span class="s2">&quot;user:email&quot;</span><span class="p">],</span>  <span class="c1"># Optional: override defaults</span>
+</span><span data-line="11"><span class="p">)</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="n">google</span> <span class="o">=</span> <span class="n">GoogleOAuthProvider</span><span class="p">(</span>
+</span><span data-line="14">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;your-google-client-id.apps.googleusercontent.com&quot;</span><span class="p">,</span>
+</span><span data-line="15">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;your-google-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="16"><span class="p">)</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="n">discord</span> <span class="o">=</span> <span class="n">DiscordOAuthProvider</span><span class="p">(</span>
+</span><span data-line="19">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;your-discord-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="20">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;your-discord-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="21"><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="user-info-mapping">
+<h2>User Info Mapping<a class="headerlink" href="#user-info-mapping" title="Link to this heading">¶</a></h2>
+<p>Each provider returns user information in their own format. litestar-oauth normalizes
+this into a consistent <code class="docutils literal notranslate"><span class="pre">OAuthUserInfo</span></code> dataclass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">OAuthUserInfo</span><span class="p">:</span>
+</span><span data-line="3">    <span class="n">provider</span><span class="p">:</span> <span class="nb">str</span>          <span class="c1"># e.g., &quot;github&quot;, &quot;google&quot;</span>
+</span><span data-line="4">    <span class="n">oauth_id</span><span class="p">:</span> <span class="nb">str</span>          <span class="c1"># Provider-specific user ID</span>
+</span><span data-line="5">    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>      <span class="c1"># User&#39;s email address</span>
+</span><span data-line="6">    <span class="n">email_verified</span><span class="p">:</span> <span class="nb">bool</span>   <span class="c1"># Whether email is verified</span>
+</span><span data-line="7">    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>   <span class="c1"># Username (if available)</span>
+</span><span data-line="8">    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="c1"># First name</span>
+</span><span data-line="9">    <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>  <span class="c1"># Last name</span>
+</span><span data-line="10">    <span class="n">avatar_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="c1"># URL to user&#39;s avatar</span>
+</span><span data-line="11">    <span class="n">profile_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>  <span class="c1"># URL to user&#39;s profile page</span>
+</span><span data-line="12">    <span class="n">raw_data</span><span class="p">:</span> <span class="nb">dict</span>         <span class="c1"># Complete raw response from provider</span>
+</span></pre></div>
+</div>
+<section id="provider-specific-mappings">
+<h3>Provider-Specific Mappings<a class="headerlink" href="#provider-specific-mappings" title="Link to this heading">¶</a></h3>
+<p><strong>GitHub</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oauth_id</span></code>: GitHub user ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: GitHub login (e.g., “octocat”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code>: Primary verified email (fetched via separate API call if not public)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avatar_url</span></code>: GitHub avatar URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile_url</span></code>: GitHub profile URL (e.g., “<a class="reference external" href="https://github.com/octocat">https://github.com/octocat</a>”)</p></li>
+</ul>
+<p><strong>Google</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oauth_id</span></code>: Google “sub” claim</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: Email address (Google doesn’t provide usernames)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code>: Google account email</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email_verified</span></code>: Always accurate from Google</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avatar_url</span></code>: Google profile picture URL</p></li>
+</ul>
+<p><strong>Discord</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oauth_id</span></code>: Discord snowflake ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: Discord username (with discriminator if applicable)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code>: Discord account email</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avatar_url</span></code>: Discord CDN avatar URL (handles animated avatars)</p></li>
+</ul>
+</section>
+</section>
+<section id="custom-scopes">
+<h2>Custom Scopes<a class="headerlink" href="#custom-scopes" title="Link to this heading">¶</a></h2>
+<p>Override default scopes when creating a provider:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Request additional GitHub scopes</span>
+</span><span data-line="2"><span class="n">github</span> <span class="o">=</span> <span class="n">GitHubOAuthProvider</span><span class="p">(</span>
+</span><span data-line="3">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;read:user&quot;</span><span class="p">,</span> <span class="s2">&quot;user:email&quot;</span><span class="p">,</span> <span class="s2">&quot;repo&quot;</span><span class="p">,</span> <span class="s2">&quot;read:org&quot;</span><span class="p">],</span>
+</span><span data-line="6"><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Request additional Google scopes</span>
+</span><span data-line="9"><span class="n">google</span> <span class="o">=</span> <span class="n">GoogleOAuthProvider</span><span class="p">(</span>
+</span><span data-line="10">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span data-line="11">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span data-line="12">    <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;openid&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="s2">&quot;https://www.googleapis.com/auth/calendar.readonly&quot;</span><span class="p">],</span>
+</span><span data-line="13"><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="generic-provider">
+<h2>Generic Provider<a class="headerlink" href="#generic-provider" title="Link to this heading">¶</a></h2>
+<p>For OAuth2 providers not included by default, use <code class="docutils literal notranslate"><span class="pre">GenericOAuthProvider</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.providers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenericOAuthProvider</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">custom_provider</span> <span class="o">=</span> <span class="n">GenericOAuthProvider</span><span class="p">(</span>
+</span><span data-line="4">    <span class="n">provider_name</span><span class="o">=</span><span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;your-client-id&quot;</span><span class="p">,</span>
+</span><span data-line="6">    <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;your-client-secret&quot;</span><span class="p">,</span>
+</span><span data-line="7">    <span class="n">authorize_url</span><span class="o">=</span><span class="s2">&quot;https://auth.example.com/oauth/authorize&quot;</span><span class="p">,</span>
+</span><span data-line="8">    <span class="n">token_url</span><span class="o">=</span><span class="s2">&quot;https://auth.example.com/oauth/token&quot;</span><span class="p">,</span>
+</span><span data-line="9">    <span class="n">user_info_url</span><span class="o">=</span><span class="s2">&quot;https://api.example.com/userinfo&quot;</span><span class="p">,</span>
+</span><span data-line="10">    <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;openid&quot;</span><span class="p">,</span> <span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">],</span>
+</span><span data-line="11"><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="creating-custom-providers">
+<h2>Creating Custom Providers<a class="headerlink" href="#creating-custom-providers" title="Link to this heading">¶</a></h2>
+<p>For providers with unique requirements, extend <code class="docutils literal notranslate"><span class="pre">BaseOAuthProvider</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseOAuthProvider</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">OAuthUserInfo</span>
+</span><span data-line="3">
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">class</span><span class="w"> </span><span class="nc">CustomProvider</span><span class="p">(</span><span class="n">BaseOAuthProvider</span><span class="p">):</span>
+</span><span data-line="6"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom OAuth provider implementation.&quot;&quot;&quot;</span>
+</span><span data-line="7">
+</span><span data-line="8">    <span class="nd">@property</span>
+</span><span data-line="9">    <span class="k">def</span><span class="w"> </span><span class="nf">provider_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="10">        <span class="k">return</span> <span class="s2">&quot;custom&quot;</span>
+</span><span data-line="11">
+</span><span data-line="12">    <span class="nd">@property</span>
+</span><span data-line="13">    <span class="k">def</span><span class="w"> </span><span class="nf">authorize_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="14">        <span class="k">return</span> <span class="s2">&quot;https://auth.example.com/authorize&quot;</span>
+</span><span data-line="15">
+</span><span data-line="16">    <span class="nd">@property</span>
+</span><span data-line="17">    <span class="k">def</span><span class="w"> </span><span class="nf">token_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="18">        <span class="k">return</span> <span class="s2">&quot;https://auth.example.com/token&quot;</span>
+</span><span data-line="19">
+</span><span data-line="20">    <span class="nd">@property</span>
+</span><span data-line="21">    <span class="k">def</span><span class="w"> </span><span class="nf">user_info_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="22">        <span class="k">return</span> <span class="s2">&quot;https://api.example.com/me&quot;</span>
+</span><span data-line="23">
+</span><span data-line="24">    <span class="k">def</span><span class="w"> </span><span class="nf">_default_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="25">        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;openid&quot;</span><span class="p">,</span> <span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">]</span>
+</span><span data-line="26">
+</span><span data-line="27">    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OAuthUserInfo</span><span class="p">:</span>
+</span><span data-line="28">        <span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+</span><span data-line="29">
+</span><span data-line="30">        <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span data-line="31">            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span><span data-line="32">                <span class="bp">self</span><span class="o">.</span><span class="n">user_info_url</span><span class="p">,</span>
+</span><span data-line="33">                <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+</span><span data-line="34">            <span class="p">)</span>
+</span><span data-line="35">            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</span><span data-line="36">            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span data-line="37">
+</span><span data-line="38">        <span class="k">return</span> <span class="n">OAuthUserInfo</span><span class="p">(</span>
+</span><span data-line="39">            <span class="n">provider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provider_name</span><span class="p">,</span>
+</span><span data-line="40">            <span class="n">oauth_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]),</span>
+</span><span data-line="41">            <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">),</span>
+</span><span data-line="42">            <span class="n">email_verified</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;email_verified&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+</span><span data-line="43">            <span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">),</span>
+</span><span data-line="44">            <span class="n">first_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;given_name&quot;</span><span class="p">),</span>
+</span><span data-line="45">            <span class="n">last_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;family_name&quot;</span><span class="p">),</span>
+</span><span data-line="46">            <span class="n">avatar_url</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;picture&quot;</span><span class="p">),</span>
+</span><span data-line="47">            <span class="n">profile_url</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">),</span>
+</span><span data-line="48">            <span class="n">raw_data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+</span><span data-line="49">        <span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h2>
+<p>For security, store OAuth credentials in environment variables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">litestar_oauth.contrib.litestar</span><span class="w"> </span><span class="kn">import</span> <span class="n">OAuthConfig</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">config</span> <span class="o">=</span> <span class="n">OAuthConfig</span><span class="p">(</span>
+</span><span data-line="5">    <span class="n">redirect_base_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OAUTH_REDIRECT_BASE_URL&quot;</span><span class="p">],</span>
+</span><span data-line="6">    <span class="n">github_client_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GITHUB_CLIENT_ID&quot;</span><span class="p">),</span>
+</span><span data-line="7">    <span class="n">github_client_secret</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GITHUB_CLIENT_SECRET&quot;</span><span class="p">),</span>
+</span><span data-line="8">    <span class="n">google_client_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GOOGLE_CLIENT_ID&quot;</span><span class="p">),</span>
+</span><span data-line="9">    <span class="n">google_client_secret</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GOOGLE_CLIENT_SECRET&quot;</span><span class="p">),</span>
+</span><span data-line="10"><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Example <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nv">OAUTH_REDIRECT_BASE_URL</span><span class="o">=</span>https://example.com
+</span><span data-line="2"><span class="nv">GITHUB_CLIENT_ID</span><span class="o">=</span>Iv1.abc123...
+</span><span data-line="3"><span class="nv">GITHUB_CLIENT_SECRET</span><span class="o">=</span>secret123...
+</span><span data-line="4"><span class="nv">GOOGLE_CLIENT_ID</span><span class="o">=</span><span class="m">123456</span>-abc.apps.googleusercontent.com
+</span><span data-line="5"><span class="nv">GOOGLE_CLIENT_SECRET</span><span class="o">=</span>GOCSPX-...
+</span></pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="github.html"><span class="doc">GitHub OAuth</span></a> - Detailed GitHub OAuth setup guide</p></li>
+<li><p><a class="reference internal" href="google.html"><span class="doc">Google OAuth</span></a> - Detailed Google OAuth setup guide</p></li>
+<li><p><a class="reference internal" href="discord.html"><span class="doc">Discord OAuth</span></a> - Detailed Discord OAuth setup guide</p></li>
+<li><p><a class="reference internal" href="generic.html"><span class="doc">Generic OAuth Provider</span></a> - Generic provider for any OAuth2/OIDC provider</p></li>
+<li><p><a class="reference internal" href="../api/index.html"><span class="doc">API Reference</span></a> - Complete API reference</p></li>
+</ul>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="../getting-started/quickstart.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Quickstart</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="github.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">GitHub OAuth</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Jacob Coffee</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/JacobCoffee/litestar-oauth" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script></body>
+</html>
