@@ -75,7 +75,7 @@ license = {text = "MIT"}
 name = "litestar-oauth"
 readme = "README.md"
 requires-python = ">=3.10"
-version = "0.1.0"
+version = "0.1.1"
 
 [project.optional-dependencies]
 # Standalone usage without Litestar (just the OAuth providers)

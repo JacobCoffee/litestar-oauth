@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.abspath("../src"))
 project = "litestar-oauth"
 copyright = f"{datetime.now().year}, Jacob Coffee"
 author = "Jacob Coffee"
-release = "0.1.0"
-version = "0.1.0"
+release = "0.1.1"
+version = "0.1.1"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
